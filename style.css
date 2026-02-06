@@ -96,6 +96,7 @@ body{
      border-radius: 20px;
      transition: transform 0.3s ease;
      overflow-x: hidden;
+     -webkit-overflow-scrolling: touch;
 }
 .basic-box:hover, .advance-box:hover, .legend-box:hover{
     transform: scale(1.06);
