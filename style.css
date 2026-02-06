@@ -95,7 +95,7 @@ body{
      margin-bottom: 40px;
      border-radius: 20px;
      transition: transform 0.3s ease;
-     overflow: hidden;
+     overflow-x: hidden;
 }
 .basic-box:hover, .advance-box:hover, .legend-box:hover{
     transform: scale(1.06);
