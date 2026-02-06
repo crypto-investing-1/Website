@@ -1,21 +1,259 @@
-/* সার্চ বারের সাইজ কন্ট্রোল */
-.search-box input {
-  width: 250px; /* আপনার প্রয়োজনমতো ছোট-বড় করতে পারেন */
-  border: 1px solid #ccc;
+body{
+    background-color: aqua;
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #a1c4fd);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow-x: hidden;
+    height: 100vh;
+    font-family: "Poppins", sans-serif;
+
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.welcome-text{
+    height: 300px;
+    margin-bottom: 30px;
+   
+    
+    
+    
 }
 
-/* ছোট স্ক্রিনে মেনুগুলো যেন সুন্দর দেখায় */
-@media (max-width: 991px) {
-  .navbar-nav {
-    padding-top: 1rem;
-    text-align: left;
-  }
-  .search-box input {
-    width: 100%; /* মোবাইলে সার্চ বার ফুল উইডথ হবে */
-  }
+.welcome-text{
+    animation: jaber 1s 0.02s ease-in-out 1 normal forwards;
 }
 
-/* মেনু এবং সার্চ বারের গ্যাপ কমানো বা বাড়ানো */
-.nav-item {
-  font-weight: 500;
+@keyframes jaber {
+    from {
+        opacity: 0;
+        transform: translateY(0px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(40px);
+    }
+    
+}
+
+
+
+.unlock:hover{
+     transform: scale(1.02);
+}
+
+
+.unlock{
+    color: #ffe6db;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.185);
+    font-weight: 700;
+    transition: transform 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+
+
+.lead{
+    color: #b38e8e;
+    margin-bottom: 30px;
+}
+
+.contact-b{
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    height: 45px;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.185);
+    backdrop-filter: blur(15px); /* পেছনের অংশ ঝাপসা করার জন্য */
+    -webkit-backdrop-filter: blur(15px); /* Safari ব্রাউজারের জন্য */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(161, 161, 161, 0.2);
+    border-radius: 20px;
+    padding: 10px;   
+    margin-left: 43%;
+    transition: transform 0.3s ease;
+    
+}
+
+.contact-b:hover{
+    transform: scale(1.17);
+    
+}
+.advance-box::-webkit-scrollbar{
+    display: none;
+}
+
+.basic-box, .advance-box, .legend-box{
+    border: 3px solid rgba(255, 196, 196, 0.719);
+    border-radius: 10px;
+    height: 500px;
+    overflow-y: auto;
+    box-shadow: 5px 5px 5px rgba(109, 109, 109, 0.2);
+     margin-bottom: 40px;
+     border-radius: 20px;
+     transition: transform 0.3s ease;
+     overflow: hidden;
+}
+.basic-box:hover, .advance-box:hover, .legend-box:hover{
+    transform: scale(1.06);
+    box-shadow: 10px 10px 15px rgba(109, 109, 109, 0.4);
+}
+
+.basic-box ul li, .advance-box ul li, .legend-box ul li{
+
+    padding: 10px;
+    font-size: 18px;
+    color: #d68989;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+.class-count {
+    background-color: #ffb3b3;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 15px;
+    margin-left: 10px;
+   
+}
+
+ul li{
+
+    display: flex;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+}
+
+ul li:hover {
+    background-color: rgba(255, 179, 179, 0.5);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform scale(1.10);
+}
+
+.modules{
+    color: #fab4b4;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.185);
+     font-weight: 700;
+     transition: transform 0.3s ease;
+     backdrop-filter: blur(5px);
+     display: flex;
+     margin-left:5%;
+     
+}
+.modules:hover{
+    transform: scale(1.05);
+    
+}
+.modules::-webkit-scrollbar{
+    display: none;
+}
+
+
+
+
+
+
+.treding-chart{
+    border: 3px solid rgba(255, 217, 217, 0.712);
+    border-radius: 25px;
+    width: 100%;
+    height: 500px;
+    overflow-y: auto;
+    box-shadow: 5px 5px 5px rgba(109, 109, 109, 0.2);
+    margin-bottom: 40px;
+}
+
+.treding-chart::-webkit-scrollbar{
+    display: none;
+}
+.treding-chart ul img{
+    width: 100%;
+    margin: 0px !important;
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+    padding-bottom: 3px;
+}
+
+.treding-chart ul img:hover {
+    transform: scale(1.05);
+    
+}
+
+.chart-img {
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+.wish-section {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: transparent; /* Apnar background-er shathe milbe */
+}
+
+.wish-content h2 {
+    font-size: 24px;
+    color: #bd8585;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.wish-content p {
+    font-size: 18px;
+    color: #9e8484;
+    font-style: italic; /* Italic dile message-ti aro personal lage */
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.wish-divider {
+    height: 3px;
+    width: 50px;
+    background-color: #ffb3b3; /* Apnar "Class Count" badge-er color-er shathe match kore */
+    margin: 20px auto 0;
+    border-radius: 2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+    .treding-chart {
+        width: 100%;
+        height: 350px;
+    }
 }

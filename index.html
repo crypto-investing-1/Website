@@ -3,290 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forex Private Class Module - Elite</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-bg-start: #0a081a;
-            --primary-bg-end: #1e1b3d;
-            --card-bg-light: rgba(255, 255, 255, 0.07);
-            --card-bg-hover: rgba(255, 255, 255, 0.15);
-            --border-color: rgba(255, 255, 255, 0.1);
-            --hover-border-color: #00eaff; /* Electric Blue for hover */
-            --gradient-text-start: #00c6ff;
-            --gradient-text-end: #0072ff;
-            --accent-color: #ffcc00; /* Gold accent */
-            --text-color: #e0e0e0;
-            --heading-color: #f0f0f0;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, var(--primary-bg-start), var(--primary-bg-end));
-            color: var(--text-color);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 30px 20px;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-            position: relative;
-        }
-
-        /* Animated background circles */
-        body::before {
-            content: '';
-            position: absolute;
-            top: -20%;
-            left: -10%;
-            width: 400px;
-            height: 400px;
-            background: rgba(0, 198, 255, 0.15);
-            border-radius: 50%;
-            filter: blur(80px);
-            animation: moveCircle1 15s infinite alternate ease-in-out;
-            z-index: -1;
-        }
-
-        body::after {
-            content: '';
-            position: absolute;
-            bottom: -20%;
-            right: -10%;
-            width: 350px;
-            height: 350px;
-            background: rgba(132, 0, 255, 0.15);
-            border-radius: 50%;
-            filter: blur(90px);
-            animation: moveCircle2 18s infinite alternate ease-in-out;
-            z-index: -1;
-        }
-
-        @keyframes moveCircle1 {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 80px); }
-        }
-
-        @keyframes moveCircle2 {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-70px, -60px); }
-        }
-
-        /* Hero Section */
-        .hero-section {
-            text-align: center;
-            margin-bottom: 60px;
-            padding: 40px 20px;
-            animation: fadeInDown 1.2s ease-out;
-            max-width: 900px;
-        }
-
-        .hero-section h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            background: linear-gradient(45deg, var(--gradient-text-start), var(--gradient-text-end));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 15px rgba(0, 198, 255, 0.4);
-            letter-spacing: 1px;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .hero-section p {
-            font-size: 1.2rem;
-            color: #b0b0b0;
-            line-height: 1.6;
-            max-width: 700px;
-            margin: 0 auto 30px auto;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, #00c6ff, #0072ff);
-            padding: 14px 30px;
-            border-radius: 50px;
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.4s ease;
-            box-shadow: 0 5px 20px rgba(0, 114, 255, 0.4);
-            border: none;
-            cursor: pointer;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 114, 255, 0.6);
-            background: linear-gradient(45deg, #0072ff, #00c6ff);
-        }
-
-        /* Module Container */
-        .module-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            width: 100%;
-            max-width: 1200px;
-            margin-top: 30px;
-        }
-
-        /* Glassmorphism Card Style */
-        .glass-card {
-            background: var(--card-bg-light);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border-color);
-            border-radius: 25px;
-            padding: 30px;
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth transition */
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
-
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at top left, rgba(0, 198, 255, 0.05), transparent 70%);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .glass-card:hover::before {
-            opacity: 1;
-        }
-
-        .glass-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            background: var(--card-bg-hover);
-            border: 1px solid var(--hover-border-color);
-            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6), 0 0 30px var(--hover-border-color);
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-        }
-
-        .card-header h2 {
-            font-size: 1.8rem;
-            color: var(--heading-color);
-            background: linear-gradient(45deg, #aaffff, #00c6ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-        }
-
-        .card-header span {
-            font-size: 0.95rem;
-            background: var(--gradient-text-end);
-            padding: 6px 15px;
-            border-radius: 25px;
-            font-weight: 600;
-            color: white;
-            box-shadow: 0 2px 10px rgba(0, 114, 255, 0.3);
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        li {
-            padding: 15px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 1rem;
-            color: var(--text-color);
-            transition: all 0.3s ease;
-            position: relative;
-            cursor: pointer;
-        }
-
-        li:last-child {
-            border-bottom: none;
-        }
-
-        li:hover {
-            color: var(--hover-border-color);
-            padding-left: 15px;
-            transform: translateX(5px);
-        }
-
-        li:hover .class-count {
-            color: var(--accent-color);
-            transform: scale(1.1);
-        }
-
-        .class-count {
-            color: var(--accent-color);
-            font-weight: 600;
-            background: rgba(255, 204, 0, 0.1);
-            padding: 3px 8px;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-
-        /* Animations */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .hero-section h1 { font-size: 2.5rem; }
-            .hero-section p { font-size: 1rem; }
-            .module-container { grid-template-columns: 1fr; padding: 0 10px; }
-            .glass-card { padding: 20px; }
-            .card-header h2 { font-size: 1.5rem; }
-            li { font-size: 0.9rem; padding: 12px 0; }
-            body { padding: 20px 10px; }
-        }
-
-        @media (max-width: 480px) {
-            .hero-section h1 { font-size: 2rem; }
-            .hero-section p { font-size: 0.9rem; }
-            .cta-button { padding: 12px 25px; font-size: 1rem; }
-        }
-    </style>
+    <title>Learn With Me</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap-5.3.8-dist/css/bootstrap.min.css">
 </head>
 <body>
-
-    <div class="hero-section">
-        <h1>Unlock Your Treding Potential With Rich Jaber</h1>
-        <p>Join our exclusive private classes and master the art of Forex trading with in-depth modules designed for every level, from beginner to legend.</p>
-        <a target="_blank" href="https://www.facebook.com/junaid.al.jaber" class="cta-button">Enroll Now</a>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="welcome-text">
+                    <h1 class=" text-center unlock">Unlock Your Treding Potential</h1>
+                    <p class="lead text-center">Join our exclusive private classes and master the art of Forex trading with in-depth modules designed for every level, from beginner to legend.</p>
+                    <a target="_blank" href="https://t.me/jaberdeviloper" class="contact-b text-center  ">Contact</a>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="module-container">
-        
-        <div class="glass-card">
-            <div class="card-header">
-                <h2>Basic</h2>
-                <span>Module 01</span>
-            </div>
-            <ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-4 col-md-12 text-center ">
+                <div class="basic-box">
+                   <h3 class="modules mt-3 ">Basic Module</h3>
+                        <ul style="list-style-type: none; padding: 0; margin: 0;text-align: left;">
                 <li>1. Candle Introduction <span class="class-count">2 Classes</span></li>
                 <li>2. Market Introduction <span class="class-count">1 Class</span></li>
                 <li>3. S & R Level <span class="class-count">1 Class</span></li>
@@ -295,14 +34,18 @@
                 <li>6. Trapping <span class="class-count">1 Class</span></li>
                 
             </ul>
-        </div>
+        
 
-        <div class="glass-card">
-            <div class="card-header">
-                <h2>Advance</h2>
-                <span>Module 02</span>
-            </div>
-            <ul>
+       
+                </div>
+                </div>
+
+
+                <div class="col-12 col-lg-4 col-md-12 text-center" >
+                    <div class="advance-box ">
+                        <p class="legend-p">
+                            <h3 class="modules mt-3 ">Advance Module</h3>
+           <ul style="list-style-type: none; padding: 0; margin: 0;text-align: left;">
                 <li>1. Bull-Bear Confirmation <span class="class-count">1 Class</span></li>
                 <li>2. Supply-Demand Intro <span class="class-count">1 Class</span></li>
                 <li>3. Supply-Demand Zone <span class="class-count">1 Class</span></li>
@@ -319,24 +62,64 @@
                 <li>14. Rat Traps <span class="class-count">1 Class</span></li>
                 <li>15. Order Block Introduction <span class="class-count">1 Class</span></li>
                 
-            </ul>
-        </div>
-
-        <div class="glass-card">
-            <div class="card-header">
-                <h2>Legend</h2>
-                <span>Module 03</span>
+            </ul>                                                                                                                                                                                                                                                                                                                                                                                                                          
+        </p>
+                    </div>
             </div>
-            <ul>
+            <div class="col-12 col-lg-4 col-md-12 text-center ">
+                <div class="legend-box">
+                    
+                    <h3 class="modules mt-3 ">Legend Module</h3>
+                    <ul style="list-style-type: none; padding: 2px; margin: 0;text-align: left;">
                 <li>1. Parallel Trend CCPs-QFL <span class="class-count">2 Classes</span></li>
                 <li>2. Brain D-Think <span class="class-count">1 Class</span></li>
                 <li>3. Money Management <span class="class-count">1 Class</span></li>
                 <li>4. Risk Management <span class="class-count">1 Class</span></li>
                 <li>5. Secret 3 Class <span class="class-count">3 Classes</span></li>
             </ul>
+                </div>
         </div>
-
     </div>
 
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12  col-md-12 col-lg-6 ">
+                <div class="treding-chart">
+                    <ul class="chart-img">
+                        <img src="TRED/{35567C50-B22D-497A-80BD-6198C668612C}.png">
+                        <img src="TRED/{59A58087-7C7B-404C-B307-F378D4EDADAC}.png">
+                        <img src="TRED/{F9E0A709-9872-403D-816A-C96181B58636}.png">
+                    </ul>
+
+                  
+                </div>
+            </div>
+             <div class="col-12  col-md-12 col-lg-6 ">
+                <div class="treding-chart">
+                    <ul class="chart-img">
+                        <img src="compress-i/IMG_1040.webp">
+                        <img src="compress-i/IMG_2769.webp">
+                        <img src="compress-i/img3.webp">
+                    </ul>
+
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="bootstrap-5.3.8-dist/js/bootstrap.js"></script>
 </body>
+<section class="wish-section">
+    <div class="wish-content">
+        <h2>Best Wishes for Your Success</h2>
+        <p>"I hope your trading journey is filled with growth and profitability. Stay patient, keep learning, and may you achieve your financial goals. My prayers and best wishes are always with you."</p>
+        <div class="wish-divider"></div>
+    </div>
+</section>
 </html>
