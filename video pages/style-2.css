@@ -1,0 +1,93 @@
+body{
+    background-color: aqua;
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #a1c4fd);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow-x: hidden;
+    height: 100vh;
+    font-family: "Poppins", sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+
+
+.box {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding: 2%; /* Tumi padding ektu komate paro jodi box beshi boro lage */
+    border-radius: 20px;
+    
+    /* Main Glassy Effect */
+    background: rgba(255, 255, 255, 0.15); /* Halka white opacity */
+    backdrop-filter: blur(25px);           /* Blur ektu bariye dile glass look valo hoy */
+    -webkit-backdrop-filter: blur(15px);
+    background-color: transparent;
+    
+    /* Border-e light reflection */
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    
+    /* Shadow for depth */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease; /* Hover effect er jonno transition */
+}
+
+.box:hover{
+    transform: scale(1.01);
+}
+
+
+video{
+    width: 90%;
+    height: 90%;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    margin-left: 5%;
+}
+video:hover{
+    transform: scale(1.02);
+}
+
+h1 {
+    display: block;          /* Flex ব্যবহার করার দরকার নেই */
+    width: fit-content;      
+    margin-left: auto;       /* বাম দিক থেকে অটো মার্জিন */
+    margin-right: auto;      /* ডান দিক থেকে অটো মার্জিন */
+    text-align: center;
+    color: #eb9e9e;
+    text-shadow: 2px 2px 4px rgba(196, 150, 150, 0.5);
+    font-size: 36px;
+    margin-bottom: 2px;
+    transition: transform 0.3s ease;
+}
+h1:hover{
+    background-color: #e5c0c03d;
+    text-shadow: 2px 2px 4px rgba(196, 150, 150, 0.5);
+    font-size: 36px;
+    margin-bottom: 2px;
+    transform: scale(1.05);
+    border-radius: 5px;
+    
+    
+}
+
+.devider{
+    width: 16%;
+    height: 2px;
+    background-color: #eb9e9e;
+    color: #eb9e9e;
+    text-shadow: 2px 2px 4px rgba(196, 150, 150, 0.5);
+}
+p{
+    margin-left: 5%;
+    color: #ffeaea;
+    text-shadow: 2px 2px 4px rgba(196, 150, 150, 0.5);
+    font-size: 18px;
+    margin-bottom: 20px;
+}
