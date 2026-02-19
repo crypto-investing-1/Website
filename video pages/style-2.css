@@ -50,9 +50,6 @@ video{
     transition: transform 0.3s ease;
     margin-left: 5%;
 }
-video:hover{
-    transform: scale(1.02);
-}
 
 h1 {
     display: block;          /* Flex ব্যবহার করার দরকার নেই */
