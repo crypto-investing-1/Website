@@ -181,7 +181,11 @@ header{
     border-radius: 12px;
     font-size: 15px;
     margin-left: 10px;
+    transition: transform 0.3s ease;
    
+}
+.class-count:hover {
+    transform: scale(1.1);
 }
 
 ul li{
