@@ -247,48 +247,58 @@
         </iframe>
     </div>
 
-    <script>
-        function togglePassword() {
-            const input = document.getElementById('accessCode');
-            const icon = document.getElementById('eyeIcon');
-            if (input.type === "password") {
-                input.type = "text";
-                icon.innerText = "🔒"; // Changed to lock icon
-            } else {
-                input.type = "password";
-                icon.innerText = "👁️"; // Changed back to eye icon
-            }
+  <script>
+    // 1. Page load hobar somoy check korbe age theke code save ache kina
+    window.onload = function() {
+        const savedCode = localStorage.getItem('mySecretCode');
+        if (savedCode) {
+            document.getElementById('accessCode').value = savedCode;
         }
+    };
 
-        function checkCode() {
-            const codeInput = document.getElementById('accessCode').value;
-            const errorMsg = document.getElementById('error-msg');
-            const secretCode = "Yes i can do it";
-
-            if (codeInput === secretCode) {
-                window.open("D:/1.My%20own%20website/Main%20Page/index.html", "_blank");
-            } else {
-                errorMsg.style.display = "block";
-                // Add a temporary shake animation for the card
-                const loginCard = document.querySelector('.login-card');
-                loginCard.style.animation = "shake 0.5s ease-in-out";
-                setTimeout(() => {
-                    loginCard.style.animation = "float 4s ease-in-out infinite"; // Revert to original float
-                }, 500);
-            }
+    function togglePassword() {
+        const input = document.getElementById('accessCode');
+        const icon = document.getElementById('eyeIcon');
+        if (input.type === "password") {
+            input.type = "text";
+            icon.innerText = "🔒"; 
+        } else {
+            input.type = "password";
+            icon.innerText = "👁️"; 
         }
-        
-        /* New Shake Animation for error feedback */
-        const styleSheet = document.createElement("style");
-        styleSheet.type = "text/css";
-        styleSheet.innerText = `
-            @keyframes shake {
-                0%, 100% { transform: translateX(0) translateY(0); }
-                20%, 60% { transform: translateX(-5px) translateY(-5px); }
-                40%, 80% { transform: translateX(5px) translateY(5px); }
-            }
-        `;
-        document.head.appendChild(styleSheet);
-    </script>
+    }
+
+    function checkCode() {
+        const codeInput = document.getElementById('accessCode').value;
+        const errorMsg = document.getElementById('error-msg');
+        const secretCode = "Yes i can do it";
+
+        if (codeInput === secretCode) {
+            // 2. Shothik password hole seta browser memory-te save korbe
+            localStorage.setItem('mySecretCode', codeInput);
+            
+            window.open("Main Page/index.html", "_blank");
+        } else {
+            errorMsg.style.display = "block";
+            const loginCard = document.querySelector('.login-card');
+            loginCard.style.animation = "shake 0.5s ease-in-out";
+            setTimeout(() => {
+                loginCard.style.animation = "float 4s ease-in-out infinite"; 
+            }, 500);
+        }
+    }
+    
+    /* New Shake Animation logic */
+    const styleSheet = document.createElement("style");
+    styleSheet.type = "text/css";
+    styleSheet.innerText = `
+        @keyframes shake {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            20%, 60% { transform: translateX(-5px) translateY(-5px); }
+            40%, 80% { transform: translateX(5px) translateY(5px); }
+        }
+    `;
+    document.head.appendChild(styleSheet);
+</script>
 </body>
 </html>
