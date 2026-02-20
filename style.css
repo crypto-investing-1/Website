@@ -143,7 +143,10 @@ header{
     transform: scale(1.17);
     
 }
-.advance-box::-webkit-scrollbar,.legend-box::-webkit-scrollbar, .treding-chart::-webkit-scrollbar{
+.basic-box::-webkit-scrollbar, 
+.advance-box::-webkit-scrollbar, 
+.legend-box::-webkit-scrollbar, 
+.treding-chart::-webkit-scrollbar {
     display: none;
 }
 
