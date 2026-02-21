@@ -328,47 +328,57 @@
         </div>
     </div>
 
-    <script>
-        window.onload = function() {
-            const savedCode = localStorage.getItem('mySecretCode');
-            if (savedCode) { document.getElementById('accessCode').value = savedCode; }
-        };
+<script>
+    const loadingScreen = document.getElementById('loading-screen') || document.getElementById('loader-container');
 
-        function togglePassword() {
-            const input = document.getElementById('accessCode');
-            const icon = document.getElementById('eyeIcon');
-            if (input.type === "password") {
-                input.type = "text";
-                icon.innerText = "🔒";
+    function startLoading(url, isNewTab) {
+        if (!url) return;
+        loadingScreen.style.display = 'flex';
+        
+        // Mobile check korchi
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        setTimeout(() => {
+            if (isNewTab && !isMobile) {
+                // PC te hole nuton tab-e khulbe
+                window.open(url, "_blank");
+                loadingScreen.style.display = 'none'; 
             } else {
-                input.type = "password";
-                icon.innerText = "👁️";
+                // Mobile-e hole ba login success hole same tab-e open hobe (Highly Recommended for Mobile)
+                window.location.href = url;
             }
-        }
+        }, 2000); 
+    }
 
-        function checkCode() {
-            const codeInput = document.getElementById('accessCode').value;
-            const errorMsg = document.getElementById('error-msg');
-            const loader = document.getElementById('loader-container');
-            const secretCode = "TargetB";
+    function checkCode() {
+        const codeInput = document.getElementById('accessCode').value;
+        const errorMsg = document.getElementById('error-msg');
+        const secretCode = "TargetB";
 
-            if (codeInput === secretCode) {
-                // Show loader
-                loader.style.display = "flex";
-                
-                setTimeout(() => {
-                    localStorage.setItem('mySecretCode', codeInput);
-                    window.open("Main Page/index.html", "_blank");
-                    // Hide loader after opening new page
-                    loader.style.display = "none";
-                }, 2000);
-            } else {
-                errorMsg.style.display = "block";
-                const loginCard = document.querySelector('.login-card');
-                loginCard.style.animation = "shake 0.5s ease-in-out";
-                setTimeout(() => { loginCard.style.animation = "float 4s ease-in-out infinite"; }, 500);
-            }
+        if (codeInput === secretCode) {
+            localStorage.setItem('mySecretCode', codeInput);
+            // Redirection logic call kora holo
+            startLoading("Main Page/index.html", false); 
+        } else {
+            errorMsg.style.display = "block";
+            const loginCard = document.querySelector('.login-card');
+            loginCard.style.animation = "shake 0.5s ease-in-out";
+            setTimeout(() => { loginCard.style.animation = "float 4s ease-in-out infinite"; }, 500);
         }
-    </script>
+    }
+
+    // Password show/hide logic
+    function togglePassword() {
+        const input = document.getElementById('accessCode');
+        const icon = document.getElementById('eyeIcon');
+        input.type = (input.type === "password") ? "text" : "password";
+        icon.innerText = (input.type === "password") ? "🔒" : "👁️";
+    }
+
+    window.onload = function() {
+        const savedCode = localStorage.getItem('mySecretCode');
+        if (savedCode) { document.getElementById('accessCode').value = savedCode; }
+    };
+</script>
 </body>
 </html>
