@@ -214,7 +214,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    // 1. Selector check
     const loadingScreen = document.getElementById('loader-container') || document.getElementById('loading-screen');
 
     function startLoading(url, isNewTab) {
@@ -226,35 +225,29 @@
 
         setTimeout(() => {
             if (isNewTab && !isMobile) {
-                // PC-te new tab-e khulle loader bondho korte hoy
                 window.open(url, "_blank");
+                // PC-te new tab-e khulle loader bondho kore dite hobe
                 if (loadingScreen) loadingScreen.style.display = 'none'; 
             } else {
-                // Normal redirect (Browser history maintain korbe)
-                window.location.href = url;
+                window.location.href = url; // Normal redirection
             }
-        }, 1200); // 1.2s delay for smoother feel
+        }, 1200);
     }
 
-    // 2. Link Click Handler (Carefully filtered)
     document.addEventListener('click', function(e) {
         const link = e.target.closest('a');
-        
-        // Jodi link na thake ba target link-er bhitore kono "button" thake jeta navigation noy
-        if (!link || !link.href || link.href.includes('#')) return;
-
-        // target="_blank" check
-        const isBlank = link.target === "_blank";
-
-        // Prevent default only if it's a valid external/internal navigation
-        e.preventDefault(); 
-        startLoading(link.href, isBlank);
+        // Jodi link valid hoy ebong target blank na hoy, tobe animation hobe
+        if (link && link.href && !link.href.includes('#') && !link.getAttribute('href').startsWith('javascript')) {
+            const isBlank = link.target === "_blank";
+            
+            // Mobile-e target blank thakleo amra startLoading diye handle korbo
+            e.preventDefault(); 
+            startLoading(link.href, isBlank);
+        }
     });
 
-    // 3. BACK BUTTON FIX (The most important part)
-    // Mobile-e back korle loader jeno auto hide hoy
+    // Main Page-e back button-er jonno loader fix
     window.addEventListener('pageshow', function(event) {
-        // Jodi page-ta cache theke load hoy (back button press korle hoy)
         if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
             if (loadingScreen) {
                 loadingScreen.style.display = 'none';

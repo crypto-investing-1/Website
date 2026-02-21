@@ -329,10 +329,8 @@
     </div>
 
 <script>
-    // ১. লোডার সিলেক্ট করা
-    const loadingScreen = document.getElementById('loading-screen') || document.getElementById('loader-container');
+    const loadingScreen = document.getElementById('loader-container') || document.getElementById('loading-screen');
 
-    // ২. রিডাইরেকশন এবং লোডিং ফাংশন
     function startLoading(url, isNewTab) {
         if (!url) return;
         if (loadingScreen) loadingScreen.style.display = 'flex';
@@ -344,54 +342,43 @@
                 window.open(url, "_blank");
                 if (loadingScreen) loadingScreen.style.display = 'none'; 
             } else {
-                window.location.href = url;
+                window.location.href = url; // History maintain korbe
             }
-        }, 2000); 
+        }, 1500); 
     }
 
-    // ৩. পাসওয়ার্ড ভেরিফাই ফাংশন
     function checkCode() {
         const codeInput = document.getElementById('accessCode').value;
-        const errorMsg = document.getElementById('error-msg');
         const secretCode = "TargetB";
 
         if (codeInput === secretCode) {
             localStorage.setItem('mySecretCode', codeInput);
-            // login success hole animation dekhaye bhetore niye jabe
             startLoading("Main Page/index.html", false); 
         } else {
-            errorMsg.style.display = "block";
+            document.getElementById('error-msg').style.display = "block";
             const loginCard = document.querySelector('.login-card');
             loginCard.style.animation = "shake 0.5s ease-in-out";
             setTimeout(() => { loginCard.style.animation = "float 4s ease-in-out infinite"; }, 500);
         }
     }
 
-    // ৪. BACK BUTTON FIX (মোবাইলের জন্য সবচেয়ে জরুরি)
+    // Back button-e firle jeno loader stuck na hoye thake
     window.addEventListener('pageshow', function(event) {
-        // Jodi page back button diye load hoy, tobe loader hide hobe
         if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
-            if (loadingScreen) {
-                loadingScreen.style.display = 'none';
-            }
+            if (loadingScreen) loadingScreen.style.display = 'none';
         }
     });
 
-    // ৫. পাসওয়ার্ড দেখা বা লুকানোর লজিক
     function togglePassword() {
         const input = document.getElementById('accessCode');
         const icon = document.getElementById('eyeIcon');
-        if (input) {
-            input.type = (input.type === "password") ? "text" : "password";
-            if (icon) icon.innerText = (input.type === "password") ? "👁️" : "🔒";
-        }
+        input.type = (input.type === "password") ? "text" : "password";
+        if (icon) icon.innerText = (input.type === "password") ? "👁️" : "🔒";
     }
 
-    // ৬. পেজ লোড হলে সেভ করা কোড বসানো
     window.onload = function() {
         const savedCode = localStorage.getItem('mySecretCode');
-        const input = document.getElementById('accessCode');
-        if (savedCode && input) { input.value = savedCode; }
+        if (savedCode) { document.getElementById('accessCode').value = savedCode; }
     };
 </script>
 </body>
