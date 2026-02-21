@@ -44,7 +44,7 @@ body{
 
 .video{
     width: 90%;
-    height: 90%;
+    height: 90% !important;
     border-radius: 20px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
