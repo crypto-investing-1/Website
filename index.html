@@ -33,7 +33,52 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Login Card */
+        /* --- New CSS Loader Section --- */
+        #loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: none; 
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 9999;
+        }
+
+        .classic-loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            color: white;
+            font-weight: 400;
+            letter-spacing: 2px;
+            font-size: 14px;
+            text-transform: uppercase;
+            animation: pulseText 1.5s infinite;
+        }
+
+        @keyframes pulseText {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        /* --- End Loader Section --- */
+
         .login-card {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
@@ -47,10 +92,7 @@
             text-align: center;
             animation: float 4s ease-in-out infinite;
             margin-bottom: 30px;
-          
-
         }
-      
 
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
@@ -67,12 +109,9 @@
         }
         .toggle-btn { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; }
 
-      
         button.main-btn:hover { transform: scale(1.05); background: rgba(255, 255, 255, 0.3); box-shadow: 0 0 20px rgba(255, 255, 255, 0.6); }
 
-        /* Video Container */
         .video-container {
-          
             max-width: 550px;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
@@ -86,7 +125,6 @@
         .video-container:hover { transform: scale(1.04); }
         .video-container video { width: 100%; border-radius: 15px; display: block; }
 
-        /* Modules Grid (Responsive) */
         .modules-section {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -95,17 +133,44 @@
             max-width: 1200px;
         }
 
-        .module-box {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 25px;
-            border-radius: 25px;
-            color: #fff;
-            transition: 0.3s ease;
-            max-height: 450px; /* Optional: adds scroll if content is too long */
-            overflow-y: auto;
-        }
+      
+       .module-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    color: #fff;
+    transition: 0.3s ease;
+    
+    /* FIX: Scrollbar jeno border kete na jay */
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+    /* Padding-ta ektu bhalobhabe manage kora */
+    padding-top: 15px;    /* Upore ektu jaiga rakha hoyeche */
+    padding-bottom: 15px; /* Nicheo ektu jaiga */
+    padding-left: 20px;
+    padding-right: 10px;  /* Right side e kom padding jate scrollbar-er sathe gap thake */
+}
+
+/* --- SCROLLBAR DESIGN (Jate border radius er sathe manay) --- */
+.module-box::-webkit-scrollbar {
+    width: 6px; /* Scrollbar-ta ektu shoru kora holo */
+}
+
+.module-box::-webkit-scrollbar-track {
+    background: transparent; /* Track-ta transparent jate border radius e baje na lage */
+    margin: 15px 0; /* EI LINE-TI MAIN: Upore ebong niche ektu gap rakbe jate konay na baje */
+}
+
+.module-box::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 10px; /* Scrollbar stick-tao rounded hobe */
+}
+
+
+
 
         .module-box:hover { transform: translateY(-10px); background: rgba(255, 255, 255, 0.2); }
 
@@ -135,7 +200,6 @@
         }
         .module-list li:hover {
              background: rgba(255, 189, 189, 0.1); 
-             
              transform: scale(1.05);
         }
 
@@ -146,79 +210,59 @@
             border-radius: 8px;
             font-size: 11px;
             font-weight: 600;
-            text-decoration: none;
         }
 
         #error-msg { color: #ff4d4d; font-size: 12px; margin-top: 10px; display: none; }
 
-        /* Custom Scrollbar for Module Boxes */
-        .module-box::-webkit-scrollbar { display: none;}
-        .module-box::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 10px; }
-
         .send-here-link, .main-btn{
-    /* Glassy Vibe */
-    width: 100%;
-    background: rgba(255, 255, 255, 0.15); /* Transparent white */
-    backdrop-filter: blur(10px); /* Blurs the background behind */
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 12px;
-    padding: 12px 25px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    /* Text Styling */
-    color: #ffffff;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.4s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-    
-    /* Animation Trigger */
-    animation: glowPulse 2s infinite ease-in-out;
-}
+            width: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 12px;
+            padding: 12px 25px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            color: #ffffff;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            animation: glowPulse 2s infinite ease-in-out;
+        }
 
-/* Hover Effect */
-.send-here-link:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
-    letter-spacing: 1px;
-}
+        @keyframes glowPulse {
+            0% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); border-color: rgba(255, 255, 255, 0.8); }
+            100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.3); }
+        }
 
-/* Glassy Glow Animation */
-@keyframes glowPulse {
-    0% {
-        box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
-        border-color: rgba(255, 255, 255, 0.3);
-    }
-    50% {
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-        border-color: rgba(255, 255, 255, 0.8);
-    }
-    100% {
-        box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
-        border-color: rgba(255, 255, 255, 0.3);
-    }
-}
-.ml{
-     animation: glowPulse 2s infinite ease-in-out;
-     border-radius: 20px;}
+        .ml{ animation: glowPulse 2s infinite ease-in-out; border-radius: 20px; padding: 5px;}
 
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
     </style>
 </head>
 <body>
 
-    <div class="login-card">
-        <h2 class="ml">MILLIONIRE JABER</h2>
-        <p class="subtitle">ক্লাসটি শুরু করতে নিচের নাম্বারে পেমেন্ট করে স্ক্রিনশট পাঠান:
-👉 বিকাশ/নগদ:<span style="color: #3a3a3a;font-weight: bolder;text-decoration: none; "> 01342037043</span><br>
-👉 বাইনান্স আইডি:<span style="color: #414141;font-weight: bolder;"> 896991761</span><br>
+    <div id="loader-container">
+        <div class="classic-loader"></div>
+        <div class="loader-text">Verifying Access</div>
+    </div>
 
-স্ক্রিনশট পাওয়ার সাথে সাথেই আপনাকে পাসওয়ার্ড দিয়ে দেওয়া হবে। ধন্যবাদ!</p>
-<a href="https://t.me/millionireclubowner" target="_blank" class="send-here-link">Send Here</a>
+    <div class="login-card">
+        <h2 class="ml">MILLIONAIRE JABER</h2>
+        <p class="subtitle">ক্লাসটি শুরু করতে নিচের নাম্বারে পেমেন্ট করে স্ক্রিনশট পাঠান:
+            👉 বিকাশ/নগদ: <span style="color: #3a3a3a;font-weight: bolder;">01342037043</span><br>
+            👉 বাইনান্স আইডি: <span style="color: #414141;font-weight: bolder;">896991761</span><br>
+            স্ক্রিনশট পাওয়ার সাথে সাথেই পাসওয়ার্ড দেওয়া হবে। ধন্যবাদ!</p>
+        <a href="https://t.me/millionireclubowner" target="_blank" class="send-here-link">Send Here</a>
 
         <div class="input-group">
             <input type="password" id="accessCode" placeholder="Your secret code...">
@@ -229,14 +273,12 @@
     </div>
 
     <div class="video-container">
-        <video controls playsinline webkit-playsinline autoplay muted loop>
+        <video controls playsinline autoplay muted loop>
             <source src="video/Img 7904.mp4" type="video/mp4">
-            Your browser does not support the video tag.
         </video>
     </div>
 
     <div class="modules-section">
-        
         <div class="module-box">
             <h3>Basic Module</h3>
             <ul class="module-list">
@@ -284,11 +326,9 @@
                 <li>10. Secret 3 Class <span class="class-count">1 Class</span></li>
             </ul>
         </div>
-
     </div>
 
     <script>
-        // Check saved code on load
         window.onload = function() {
             const savedCode = localStorage.getItem('mySecretCode');
             if (savedCode) { document.getElementById('accessCode').value = savedCode; }
@@ -309,11 +349,19 @@
         function checkCode() {
             const codeInput = document.getElementById('accessCode').value;
             const errorMsg = document.getElementById('error-msg');
+            const loader = document.getElementById('loader-container');
             const secretCode = "TargetB";
 
             if (codeInput === secretCode) {
-                localStorage.setItem('mySecretCode', codeInput);
-                window.open("Main Page/index.html", "_blank");
+                // Show loader
+                loader.style.display = "flex";
+                
+                setTimeout(() => {
+                    localStorage.setItem('mySecretCode', codeInput);
+                    window.open("Main Page/index.html", "_blank");
+                    // Hide loader after opening new page
+                    loader.style.display = "none";
+                }, 2000);
             } else {
                 errorMsg.style.display = "block";
                 const loginCard = document.querySelector('.login-card');
@@ -321,15 +369,6 @@
                 setTimeout(() => { loginCard.style.animation = "float 4s ease-in-out infinite"; }, 500);
             }
         }
-
-        // Shake animation for error
-        const styleSheet = document.createElement("style");
-        styleSheet.innerText = `@keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-8px); }
-            75% { transform: translateX(8px); }
-        }`;
-        document.head.appendChild(styleSheet);
     </script>
 </body>
 </html>
