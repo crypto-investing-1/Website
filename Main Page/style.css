@@ -1,13 +1,17 @@
-body{
-    background-color: aqua;
-    background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #a1c4fd);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    overflow-x: hidden;
-    height: 100vh;
-    font-family: "Poppins", sans-serif;
+  body {
+            min-height: 100vh;
+            align-items: center;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            overflow-x: hidden;
+        }
 
-}
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
 header{
     background-color: transparent;
@@ -151,7 +155,7 @@ header{
 }
 
 .basic-box, .advance-box, .legend-box{
-    border: 3px solid rgba(255, 196, 196, 0.719);
+    border: 3px solid rgba(250, 250, 250, 0.205);
     border-radius: 10px;
     height: 500px;
     overflow-y: auto;
