@@ -18,7 +18,7 @@ body{
 
 
 .box {
-    height: 600px;
+    height: 800px;
     margin-top: 2%;
     margin-bottom: 2%;
     padding: 2%; /* Tumi padding ektu komate paro jodi box beshi boro lage */
@@ -45,7 +45,7 @@ body{
 
 .video{
     width: 90%;
-    height:  400px;
+    height:  600px;
     border-radius: 20px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
