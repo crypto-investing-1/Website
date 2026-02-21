@@ -214,75 +214,77 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-        const loadingScreen = document.getElementById('loading-screen');
+   <script>
+    // Loader select kora (Apnar HTML e je id ache sheta match korbe)
+    const loadingScreen = document.getElementById('loading-screen') || document.getElementById('loader-container');
 
-function startLoading(url, isNewTab) {
-    loadingScreen.style.display = 'flex';
-    
-    // Check korchi device-ta mobile ki na
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    function startLoading(url, isNewTab) {
+        if (!url || url.includes('#') || url.includes('javascript:void(0)')) return;
 
-    setTimeout(() => {
-        if (isNewTab && !isMobile) {
-            // PC te hole nuton tab-e khulbe
-            window.open(url, "_blank");
-            loadingScreen.style.display = 'none'; 
-        } else {
-            // Mobile-e hole ba isNewTab false hole same window-te khulbe (Safe for Mobile)
-            window.location.href = url;
-        }
-    }, 2500); 
-}
+        // Loader dekhano
+        if(loadingScreen) loadingScreen.style.display = 'flex';
+        
+        // Mobile check logic
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-// Apply animation to "Send Here" link
-document.querySelector('.animate-link').addEventListener('click', function(e) {
-    e.preventDefault();
-    startLoading(this.href, true);
-});
-
-// Verify Button Logic
-function handleVerify() {
-    const codeInput = document.getElementById('accessCode').value;
-    const errorMsg = document.getElementById('error-msg');
-    const secretCode = "TargetB";
-
-    if (codeInput === secretCode) {
-        localStorage.setItem('mySecretCode', codeInput);
-        // Mobile friendly redirection
-        startLoading("Main Page/index.html", false); 
-    } else {
-        errorMsg.style.display = "block";
-        const loginCard = document.querySelector('.login-card');
-        loginCard.style.animation = "shake 0.5s ease-in-out";
-        setTimeout(() => { loginCard.style.animation = "float 4s ease-in-out infinite"; }, 500);
+        setTimeout(() => {
+            if (isNewTab && !isMobile) {
+                // PC te hole nuton tab-e khulbe
+                window.open(url, "_blank");
+                if(loadingScreen) loadingScreen.style.display = 'none'; 
+            } else {
+                // Mobile-e hole ba login success hole same window-te khulbe (Safe for Mobile)
+                window.location.href = url;
+            }
+        }, 1500); // 1.5 seconds loading
     }
-}
-        // সব <a> ট্যাগ সিলেক্ট করা হচ্ছে
-        document.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                const destination = this.href;
-                
-                // যদি হ্যাশ (#) বা খালি লিংক না হয়, তবেই লোডার দেখাবে
-                if (destination && destination !== "#" && !destination.includes('javascript:void(0)')) {
-                    e.preventDefault(); // সাথে সাথে লিংকে যাওয়া বন্ধ করবে
-                    
-                    const loader = document.getElementById('loader-container');
-                    loader.style.display = 'flex'; // লোডার দেখাবে
-                    
-                    // ২ সেকেন্ড পর লিংকে নিয়ে যাবে
-                    setTimeout(() => {
-                        if (this.target === "_blank") {
-                            window.open(destination, '_blank');
-                            loader.style.display = 'none'; // নতুন ট্যাবে খুললে লোডার বন্ধ করে দিবে
-                        } else {
-                            window.location.href = destination;
-                        }
-                    }, 1500); // আপনি চাইলে ১৫০০ (১.৫ সেকেন্ড) বা ২০০০ (২ সেকেন্ড) করতে পারেন
-                }
-            });
-        });
-    </script>
+
+    // --- 1. Shob <a> tager jonno logic ---
+    document.addEventListener('click', function(e) {
+        const link = e.target.closest('a'); // Check korchi link-e click porche ki na
+        if (!link) return;
+
+        const destination = link.href;
+        const target = link.target;
+
+        // Valid link hole animation shuru hobe
+        if (destination && !destination.includes('#') && !destination.includes('javascript:void(0)')) {
+            e.preventDefault(); 
+            const isBlank = (target === "_blank");
+            startLoading(destination, isBlank);
+        }
+    });
+
+    // --- 2. Verify Button Logic ---
+    function handleVerify() {
+        const codeInput = document.getElementById('accessCode').value;
+        const errorMsg = document.getElementById('error-msg');
+        const secretCode = "TargetB";
+
+        if (codeInput === secretCode) {
+            localStorage.setItem('mySecretCode', codeInput);
+            startLoading("Main Page/index.html", false); // Mobile safe redirection
+        } else {
+            errorMsg.style.display = "block";
+            const loginCard = document.querySelector('.login-card');
+            loginCard.style.animation = "shake 0.5s ease-in-out";
+            setTimeout(() => { loginCard.style.animation = "float 4s ease-in-out infinite"; }, 500);
+        }
+    }
+
+    // --- 3. Password Toggle & LocalStorage ---
+    function togglePassword() {
+        const input = document.getElementById('accessCode');
+        const icon = document.getElementById('eyeIcon');
+        input.type = (input.type === "password") ? "text" : "password";
+        icon.innerText = (input.type === "password") ? "🔒" : "👁️";
+    }
+
+    window.onload = function() {
+        const savedCode = localStorage.getItem('mySecretCode');
+        if (savedCode) { document.getElementById('accessCode').value = savedCode; }
+    };
+</script>
 </body>
 
 <section class="wish-section">
