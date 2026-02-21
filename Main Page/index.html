@@ -214,28 +214,30 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    const loader = document.getElementById('loading-screen') || document.getElementById('loader-container');
+    // ১. লোডার সিলেক্ট করা
+    const loader = document.getElementById('loader-container');
 
     function startLoading(url, isNewTab) {
         if (!url || url.includes('#') || url.includes('javascript:void(0)')) return;
 
+        // লোডার দেখানো
         if (loader) loader.style.display = 'flex';
         
         const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
         setTimeout(() => {
             if (isNewTab && !isMobile) {
-                // PC-te new tab (History safe)
+                // PC-তে নতুন ট্যাবে খুলবে
                 window.open(url, "_blank");
                 if (loader) loader.style.display = 'none'; 
             } else {
-                // Mobile-er jonno window.location.assign use kora holo jate history maintain hoy
-                window.location.assign(url);
+                // মোবাইলে বা সাধারণ লিঙ্কে একই ট্যাবে খুলবে (Mobile Friendly Method)
+                window.location.href = url;
             }
-        }, 1500);
+        }, 1200); // সময় কিছুটা কমিয়ে ১.২ সেকেন্ড করা হয়েছে দ্রুত কাজ করার জন্য
     }
 
-    // Link Click Handler
+    // ২. লিঙ্ক ক্লিক হ্যান্ডেলার (Event Delegation)
     document.addEventListener('click', function(e) {
         const link = e.target.closest('a'); 
         if (!link) return;
@@ -243,22 +245,26 @@
         const destination = link.href;
         const target = link.target;
 
-        // Valid link check
+        // ভ্যালিড লিঙ্ক হলে এনিমেশন শুরু হবে
         if (destination && !destination.includes('#') && !destination.includes('javascript:void(0)')) {
+            // যদি লিঙ্কে target="_blank" থাকে এবং আমরা পিসিতে থাকি
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
+            // মোবাইল বা নরমাল লিঙ্কের ক্ষেত্রে এই লজিক কাজ করবে
             e.preventDefault(); 
             const isBlank = (target === "_blank");
             startLoading(destination, isBlank);
         }
     });
 
-    // BACK BUTTON FIX: Loader hide kora + History reset
-    window.addEventListener('pageshow', function(event) {
+    // ৩. ব্যাক বাটন ফিক্স (মোবাইলে ব্যাক করলে যেন লোডার গায়েব হয়ে যায়)
+    window.onpageshow = function(event) {
         if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
             if (loader) {
                 loader.style.display = 'none';
             }
         }
-    });
+    };
 </script>
 </body>
 
