@@ -214,68 +214,53 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    const loadingScreen = document.getElementById('loading-screen') || document.getElementById('loader-container');
+    // 1. Selector check
+    const loadingScreen = document.getElementById('loader-container') || document.getElementById('loading-screen');
 
     function startLoading(url, isNewTab) {
         if (!url || url.includes('#') || url.includes('javascript:void(0)')) return;
-        if(loadingScreen) loadingScreen.style.display = 'flex';
+        
+        if (loadingScreen) loadingScreen.style.display = 'flex';
         
         const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
         setTimeout(() => {
             if (isNewTab && !isMobile) {
+                // PC-te new tab-e khulle loader bondho korte hoy
                 window.open(url, "_blank");
-                if(loadingScreen) loadingScreen.style.display = 'none'; 
+                if (loadingScreen) loadingScreen.style.display = 'none'; 
             } else {
+                // Normal redirect (Browser history maintain korbe)
                 window.location.href = url;
             }
-        }, 1500);
+        }, 1200); // 1.2s delay for smoother feel
     }
 
-    // Back Button Fix: Jokhon user back korbe tokhon loader bondho hobe
-    window.addEventListener('pageshow', function(event) {
-        if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
-            if(loadingScreen) loadingScreen.style.display = 'none';
-        }
-    });
-
+    // 2. Link Click Handler (Carefully filtered)
     document.addEventListener('click', function(e) {
         const link = e.target.closest('a');
-        if (!link) return;
-        const destination = link.href;
-        const target = link.target;
+        
+        // Jodi link na thake ba target link-er bhitore kono "button" thake jeta navigation noy
+        if (!link || !link.href || link.href.includes('#')) return;
 
-        if (destination && !destination.includes('#') && !destination.includes('javascript:void(0)')) {
-            e.preventDefault(); 
-            startLoading(destination, (target === "_blank"));
-        }
+        // target="_blank" check
+        const isBlank = link.target === "_blank";
+
+        // Prevent default only if it's a valid external/internal navigation
+        e.preventDefault(); 
+        startLoading(link.href, isBlank);
     });
 
-    function handleVerify() {
-        const codeInput = document.getElementById('accessCode').value;
-        const secretCode = "TargetB";
-        if (codeInput === secretCode) {
-            localStorage.setItem('mySecretCode', codeInput);
-            startLoading("Main Page/index.html", false);
-        } else {
-            document.getElementById('error-msg').style.display = "block";
-            const loginCard = document.querySelector('.login-card');
-            loginCard.style.animation = "shake 0.5s ease-in-out";
-            setTimeout(() => { loginCard.style.animation = "float 4s ease-in-out infinite"; }, 500);
+    // 3. BACK BUTTON FIX (The most important part)
+    // Mobile-e back korle loader jeno auto hide hoy
+    window.addEventListener('pageshow', function(event) {
+        // Jodi page-ta cache theke load hoy (back button press korle hoy)
+        if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+            if (loadingScreen) {
+                loadingScreen.style.display = 'none';
+            }
         }
-    }
-
-    function togglePassword() {
-        const input = document.getElementById('accessCode');
-        const icon = document.getElementById('eyeIcon');
-        input.type = (input.type === "password") ? "text" : "password";
-        icon.innerText = (input.type === "password") ? "🔒" : "👁️";
-    }
-
-    window.onload = function() {
-        const savedCode = localStorage.getItem('mySecretCode');
-        if (savedCode) { document.getElementById('accessCode').value = savedCode; }
-    };
+    });
 </script>
 </body>
 
