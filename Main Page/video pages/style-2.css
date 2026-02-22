@@ -1,17 +1,66 @@
-  body {
-            min-height: 100vh;
-            align-items: center;
-            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            overflow-x: hidden;
-        }
+ body {
+    min-height: 100vh;
+    
+   
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+    /* Deep Professional Dark Gradient */
+    background: linear-gradient(-45deg, #0f172a, #1e293b, #111827);
+    background-size: 400% 400%;
+    animation: darkFlow 15s ease-in-out infinite;
+   
+    overflow-x: hidden;
+    position: relative;
+    color: white;
+}
+
+/* --- Constant Bubble Animation --- */
+.bubble-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.glass-bubble {
+    position: absolute;
+    bottom: -150px;
+    background: rgba(255, 255, 255, 0.05); /* খুব হালকা গ্লাসি সাদা */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border-radius: 50%;
+    animation: floatUp 12s infinite linear;
+}
+
+/* বিভিন্ন সাইজ ও পজিশনের বাবল */
+.glass-bubble:nth-child(1) { left: 5%; width: 100px; height: 100px; animation-duration: 10s; }
+.glass-bubble:nth-child(2) { left: 15%; width: 60px; height: 60px; animation-duration: 15s; animation-delay: 2s; }
+.glass-bubble:nth-child(3) { left: 30%; width: 120px; height: 120px; animation-duration: 12s; animation-delay: 4s; }
+.glass-bubble:nth-child(4) { left: 45%; width: 80px; height: 80px; animation-duration: 18s; animation-delay: 1s; }
+.glass-bubble:nth-child(5) { left: 60%; width: 150px; height: 150px; animation-duration: 20s; animation-delay: 5s; }
+.glass-bubble:nth-child(6) { left: 75%; width: 50px; height: 50px; animation-duration: 11s; animation-delay: 3s; }
+.glass-bubble:nth-child(7) { left: 85%; width: 90px; height: 90px; animation-duration: 14s; animation-delay: 7s; }
+.glass-bubble:nth-child(8) { left: 25%; width: 40px; height: 40px; animation-duration: 9s; animation-delay: 2s; }
+.glass-bubble:nth-child(9) { left: 55%; width: 110px; height: 110px; animation-duration: 16s; animation-delay: 6s; }
+.glass-bubble:nth-child(10) { left: 90%; width: 70px; height: 70px; animation-duration: 13s; animation-delay: 1s; }
+
+
+/* এনিমেশন কীফ্রেমস */
+@keyframes darkFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    20% { opacity: 0.4; }
+    80% { opacity: 0.4; }
+    100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+}
+   
 
 
 
@@ -21,7 +70,7 @@
     height: 700px;
     margin-top: 7%;
     margin-bottom: 2%;
-    padding: 2%; /* Tumi padding ektu komate paro jodi box beshi boro lage */
+     /* Tumi padding ektu komate paro jodi box beshi boro lage */
     border-radius: 20px;
     
     /* Main Glassy Effect */
@@ -31,10 +80,10 @@
     background-color: transparent;
     
     /* Border-e light reflection */
-    border: 1px solid rgba(255, 255, 255, 0.2); 
+    border: 2px solid rgba(202, 202, 202, 0.486); 
     
     /* Shadow for depth */
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(204, 204, 204, 0.2);
     transition: transform 0.3s ease; /* Hover effect er jonno transition */
 }
 
@@ -49,7 +98,8 @@
     border-radius: 20px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
-    margin-left: 5%;
+    margin-left: 2%;
+    
 }
 
 h1 {
@@ -58,15 +108,15 @@ h1 {
     margin-left: auto;       /* বাম দিক থেকে অটো মার্জিন */
     margin-right: auto;      /* ডান দিক থেকে অটো মার্জিন */
     text-align: center;
-    color: #eb9e9e;
-    text-shadow: 2px 2px 4px rgba(196, 150, 150, 0.5);
+    color: #ffffffbe;
+    text-shadow: 2px 2px 4px rgba(209, 209, 209, 0.781);
     font-size: 36px;
     margin-bottom: 2px;
     transition: transform 0.3s ease;
 }
 h1:hover{
-    background-color: #e5c0c03d;
-    text-shadow: 2px 2px 4px rgba(196, 150, 150, 0.5);
+    background-color: #c7c7c73d;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
     font-size: 36px;
     margin-bottom: 2px;
     transform: scale(1.05);
@@ -76,16 +126,16 @@ h1:hover{
 }
 
 .devider{
-    width: 16%;
+    width: 25%;
     height: 2px;
-    background-color: #eb9e9e;
-    color: #eb9e9e;
-    text-shadow: 2px 2px 4px rgba(196, 150, 150, 0.5);
+    background-color: #dfdfdf;
+    color: #ffffffbe;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
 }
 p{
-    margin-left: 5%;
+    margin-left: 2%;
     color: #ffeaea;
-    text-shadow: 2px 2px 4px rgba(196, 150, 150, 0.5);
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
     font-size: 18px;
     margin-bottom: 20px;
 }
