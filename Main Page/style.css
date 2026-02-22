@@ -1,7 +1,7 @@
   body {
             min-height: 100vh;
             align-items: center;
-            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+            background: linear-gradient(-45deg, #b8b4b493, #9c9b9bc7, #af9daabb, #645e72);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             overflow-x: hidden;
@@ -26,22 +26,16 @@ header{
 .navbar{
     
     border-radius: 10px;
-    background: linear-gradient(45deg, #ff9a9dd8, #f0cdc3, #ffbcaa, #b6ccf3);
+    background: linear-gradient(-45deg, #bbbbbb93, #969191c7, #9e959bbb, #645e72);
  
 }
 .navbar-bran{
-    text-decoration: none;
-     font-size: 22px;
-     font-weight: 700;
-     color: #ffe6db;
-     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.185);
-     transition: transform 0.3s ease;
-     backdrop-filter: blur(5px);
-    color: #ffe6db;
-    text-shadow: 2px 2px 4px rgba(175, 175, 175, 0.61);
+    color: #ffffffbe;
+    font-size: 24px;
     font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.185);
     transition: transform 0.3s ease;
-    backdrop-filter: blur(5px);
+    text-decoration-line: none;
 }
 .navbar-bran:hover{
     transform: scale(1.05);
@@ -64,11 +58,11 @@ header{
     text-decoration: none;
      font-size: 18px;
      font-weight: 500;
-    color: #ffe6db;
+    color: #ffffff;
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.185);
     font-weight: 700;
     transition: transform 0.3s ease;
-    backdrop-filter: blur(5px);
+    
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -111,7 +105,7 @@ header{
 
 
 .unlock{
-    color: #ffe6db;
+    color: #fff5f1bd;
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.185);
     font-weight: 700;
     transition: transform 0.3s ease;
@@ -121,7 +115,7 @@ header{
 
 
 .lead{
-    color: #b38e8e;
+    color: #dfdfdf;
     margin-bottom: 30px;
 }
 
@@ -175,14 +169,14 @@ header{
 
     padding: 10px;
     font-size: 18px;
-    color: #d68989;
+    color: #555555;
     font-weight: 500;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 
 .class-count {
-    background-color: #ffb3b3;
+    background-color: #8f8f8fa4;
     color: #fff;
     padding: 2px 8px;
     border-radius: 12px;
@@ -203,7 +197,7 @@ ul li{
 }
 
 ul li:hover {
-    background-color: rgba(255, 179, 179, 0.5);
+    background-color: rgba(87, 87, 87, 0.5);
     color: #fff;
     cursor: pointer;
     border-radius: 10px;
@@ -211,7 +205,7 @@ ul li:hover {
 }
 
 .modules{
-    color: #fab4b4;
+    color: #6b6b6b;
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.185);
      font-weight: 700;
      transition: transform 0.3s ease;
@@ -234,7 +228,7 @@ ul li:hover {
 
 
 .treding-chart{
-    border: 3px solid rgba(255, 217, 217, 0.712);
+    border: 3px solid rgba(160, 160, 160, 0.397);
     border-radius: 25px;
     width: 100%;
     height: 500px;
@@ -283,7 +277,7 @@ ul li:hover {
 
 .wish-content h2 {
     font-size: 24px;
-    color: #bd8585;
+    color: #b39999;
     margin-bottom: 15px;
     font-weight: 600;
 }
@@ -300,20 +294,20 @@ ul li:hover {
 .wish-divider {
     height: 3px;
     width: 50px;
-    background-color: #ffb3b3; /* Apnar "Class Count" badge-er color-er shathe match kore */
+    background-color: #e9ebffb6; /* Apnar "Class Count" badge-er color-er shathe match kore */
     margin: 20px auto 0;
     border-radius: 2px;
 }
 .wish-divider- {
     height: 3px;
     width: 100%;
-    background-image: linear-gradient(124deg ,pink,rgb(255, 182, 182),rgba(255, 157, 157, 0.685));
+    background-image: linear-gradient(124deg ,rgb(211, 195, 195),rgb(182, 164, 164),rgba(223, 223, 223, 0.685));
     margin: 20px auto 0;
     border-radius: 2px;
 }
 
 video{
-   border: #ffc8c8 solid 3px;
+   border: #7a7a7a solid 3px;
     border-radius: 20px;
     box-shadow: 10px 10px 20px rgba(44, 43, 43, 0.2);
     backdrop-filter: blur(5px);
@@ -325,13 +319,13 @@ video:hover{
     
 }
 .p-succec{
-    color: #cc9494;
+    color: #5a5a5a;
     box-shadow: 5px 5px 10px rgba(109, 109, 109, 0.2);
      transition: transform 0.3s ease;
      backdrop-filter: blur(5px);
      padding: 10px;
     line-height: 2.3;
-    border: 3px solid rgba(255, 179, 179, 0.5);
+    border: 3px solid rgba(129, 129, 129, 0.5);
     border-radius: 20px;
 
     transition: transform 0.3s ease;
