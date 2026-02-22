@@ -14,71 +14,24 @@
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* Deep Professional Dark Gradient */
-    background: linear-gradient(-45deg, #0f172a, #1e293b, #111827);
-    background-size: 400% 400%;
-    animation: darkFlow 15s ease-in-out infinite;
-    padding: 50px 20px;
-    overflow-x: hidden;
-    position: relative;
-    color: white;
-}
 
-/* --- Constant Bubble Animation --- */
-.bubble-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    overflow: hidden;
-}
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            padding: 50px 20px;
+            overflow-x: hidden;
+        }
 
-.glass-bubble {
-    position: absolute;
-    bottom: -150px;
-    background: rgba(255, 255, 255, 0.05); /* খুব হালকা গ্লাসি সাদা */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
-    border-radius: 50%;
-    animation: floatUp 12s infinite linear;
-}
-
-/* বিভিন্ন সাইজ ও পজিশনের বাবল */
-.glass-bubble:nth-child(1) { left: 5%; width: 100px; height: 100px; animation-duration: 10s; }
-.glass-bubble:nth-child(2) { left: 15%; width: 60px; height: 60px; animation-duration: 15s; animation-delay: 2s; }
-.glass-bubble:nth-child(3) { left: 30%; width: 120px; height: 120px; animation-duration: 12s; animation-delay: 4s; }
-.glass-bubble:nth-child(4) { left: 45%; width: 80px; height: 80px; animation-duration: 18s; animation-delay: 1s; }
-.glass-bubble:nth-child(5) { left: 60%; width: 150px; height: 150px; animation-duration: 20s; animation-delay: 5s; }
-.glass-bubble:nth-child(6) { left: 75%; width: 50px; height: 50px; animation-duration: 11s; animation-delay: 3s; }
-.glass-bubble:nth-child(7) { left: 85%; width: 90px; height: 90px; animation-duration: 14s; animation-delay: 7s; }
-.glass-bubble:nth-child(8) { left: 25%; width: 40px; height: 40px; animation-duration: 9s; animation-delay: 2s; }
-.glass-bubble:nth-child(9) { left: 55%; width: 110px; height: 110px; animation-duration: 16s; animation-delay: 6s; }
-.glass-bubble:nth-child(10) { left: 90%; width: 70px; height: 70px; animation-duration: 13s; animation-delay: 1s; }
-
-
-/* এনিমেশন কীফ্রেমস */
-@keyframes darkFlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-@keyframes floatUp {
-    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-    20% { opacity: 0.4; }
-    80% { opacity: 0.4; }
-    100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
-}
-   
-
-     
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
         /* --- New CSS Loader Section --- */
         #loader-container {
@@ -112,7 +65,7 @@ body {
         }
 
         .loader-text {
-            color: rgb(231, 223, 223);
+            color: white;
             font-weight: 400;
             letter-spacing: 2px;
             font-size: 14px;
@@ -127,13 +80,13 @@ body {
         /* --- End Loader Section --- */
 
         .login-card {
-            background: rgba(255, 255, 255, 0.151);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             padding: 40px;
             border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 400px;
             text-align: center;
@@ -166,7 +119,7 @@ body {
             border-radius: 25px;
             padding: 15px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
         .video-container:hover { transform: scale(1.04); }
@@ -182,13 +135,12 @@ body {
 
       
        .module-box {
-    background: rgba(255, 255, 255, 0.151);
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 25px;
     color: #fff;
     transition: 0.3s ease;
-    box-shadow: 5px 15px 30px rgba(255, 255, 255, 0.1);
     
     /* FIX: Scrollbar jeno border kete na jay */
     max-height: 400px;
@@ -232,7 +184,7 @@ body {
             align-items: center;
         }
 
-        .scroll-down { font-size: 10px; color: #fff3f0; text-transform: uppercase; }
+        .scroll-down { font-size: 10px; color: #c57863; text-transform: uppercase; }
 
         .module-list { list-style: none; }
         .module-list li {
@@ -241,19 +193,19 @@ body {
             align-items: center;
             margin-bottom: 15px;
             font-size: 14px;
-            background: rgba(255, 255, 255, 0.445);
+            background: rgba(255, 183, 183, 0.445);
             padding: 8px 12px;
             border-radius: 10px;
             transition: transform 0.2s,ease 0.2s;
         }
         .module-list li:hover {
-             background: rgba(255, 255, 255, 0.61); 
+             background: rgba(255, 189, 189, 0.1); 
              transform: scale(1.05);
         }
 
         .class-count {
-            background: #fff9f9a2;
-            color: rgb(112, 112, 112);
+            background: #ffcaca;
+            color: white;
             padding: 3px 10px;
             border-radius: 8px;
             font-size: 11px;
@@ -307,8 +259,8 @@ body {
     <div class="login-card">
         <h2 class="ml">MILLIONAIRE JABER</h2>
         <p class="subtitle">ক্লাসটি শুরু করতে নিচের নাম্বারে পেমেন্ট করে স্ক্রিনশট পাঠান:
-            👉 বিকাশ/নগদ: <span style="color: #ffffff;font-weight: bolder;">01342037043</span><br>
-            👉 বাইনান্স আইডি: <span style="color: #ffffff;font-weight: bolder;">896991761</span><br>
+            👉 বিকাশ/নগদ: <span style="color: #3a3a3a;font-weight: bolder;">01342037043</span><br>
+            👉 বাইনান্স আইডি: <span style="color: #414141;font-weight: bolder;">896991761</span><br>
             স্ক্রিনশট পাওয়ার সাথে সাথেই পাসওয়ার্ড দেওয়া হবে। ধন্যবাদ!</p>
         <a href="https://t.me/millionireclubowner" target="_blank" class="send-here-link">Send Here</a>
 
@@ -429,17 +381,5 @@ body {
         if (savedCode) { document.getElementById('accessCode').value = savedCode; }
     };
 </script>
-<div class="bubble-wrapper">
-    <div class="glass-bubble"></div>
-    <div class="glass-bubble"></div>
-    <div class="glass-bubble"></div>
-    <div class="glass-bubble"></div>
-    <div class="glass-bubble"></div>
-    <div class="glass-bubble"></div>
-    <div class="glass-bubble"></div>
-    <div class="glass-bubble"></div>
-    <div class="glass-bubble"></div>
-    <div class="glass-bubble"></div>
-</div>
 </body>
 </html>
