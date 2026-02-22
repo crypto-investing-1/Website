@@ -20,74 +20,29 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* Dark background fix for mobile */
-            background: #0f172a; 
-            background: linear-gradient(-45deg, #0f172a, #1e293b, #111827);
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
             background-size: 400% 400%;
-            animation: darkFlow 15s ease-in-out infinite;
+            animation: gradientBG 15s ease infinite;
             padding: 50px 20px;
             overflow-x: hidden;
-            position: relative;
-            color: white;
         }
 
-        /* --- Constant Bubble Animation --- */
-        .bubble-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .glass-bubble {
-            position: absolute;
-            bottom: -150px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            -webkit-backdrop-filter: blur(5px);
-            backdrop-filter: blur(5px);
-            border-radius: 50%;
-            animation: floatUp 12s infinite linear;
-        }
-
-        /* Bubbles positions */
-        .glass-bubble:nth-child(1) { left: 5%; width: 100px; height: 100px; animation-duration: 10s; }
-        .glass-bubble:nth-child(2) { left: 15%; width: 60px; height: 60px; animation-duration: 15s; animation-delay: 2s; }
-        .glass-bubble:nth-child(3) { left: 30%; width: 120px; height: 120px; animation-duration: 12s; animation-delay: 4s; }
-        .glass-bubble:nth-child(4) { left: 45%; width: 80px; height: 80px; animation-duration: 18s; animation-delay: 1s; }
-        .glass-bubble:nth-child(5) { left: 60%; width: 150px; height: 150px; animation-duration: 20s; animation-delay: 5s; }
-        .glass-bubble:nth-child(6) { left: 75%; width: 50px; height: 50px; animation-duration: 11s; animation-delay: 3s; }
-        .glass-bubble:nth-child(7) { left: 85%; width: 90px; height: 90px; animation-duration: 14s; animation-delay: 7s; }
-        .glass-bubble:nth-child(8) { left: 25%; width: 40px; height: 40px; animation-duration: 9s; animation-delay: 2s; }
-        .glass-bubble:nth-child(9) { left: 55%; width: 110px; height: 110px; animation-duration: 16s; animation-delay: 6s; }
-        .glass-bubble:nth-child(10) { left: 90%; width: 70px; height: 70px; animation-duration: 13s; animation-delay: 1s; }
-
-        @keyframes darkFlow {
+        @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        @keyframes floatUp {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.4; }
-            80% { opacity: 0.4; }
-            100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
-        }
-
-        /* --- Loader Section --- */
+        /* --- New CSS Loader Section --- */
         #loader-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 23, 42, 0.9); /* Dark fallback */
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             display: none; 
             justify-content: center;
             align-items: center;
@@ -122,23 +77,21 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
         }
+        /* --- End Loader Section --- */
 
-        /* --- Login Card Mobile Fix --- */
         .login-card {
-            background: rgba(255, 255, 255, 0.1);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 30px 20px;
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 40px;
             border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 400px;
             text-align: center;
             animation: float 4s ease-in-out infinite;
             margin-bottom: 30px;
-            position: relative;
-            z-index: 10;
         }
 
         @keyframes float {
@@ -146,113 +99,148 @@
             50% { transform: translateY(-10px); }
         }
 
-        h2 { color: #fff; margin-bottom: 10px; font-size: 1.5rem; }
-        .subtitle { color: rgba(255, 255, 255, 0.9); font-size: 13px; margin-bottom: 15px; line-height: 1.6; }
+        h2 { color: #fff; margin-bottom: 10px; }
+        .subtitle { color: rgba(255, 255, 255, 0.8); font-size: 12px; margin-bottom: 5px; }
 
         .input-group { position: relative; margin-bottom: 20px; }
         input {
             width: 100%; padding: 14px 15px; border-radius: 15px; border: none; outline: none;
-            background: rgba(255, 255, 255, 0.9); font-size: 15px; color: #333;
+            background: rgba(255, 255, 255, 0.9); font-size: 15px;
         }
-        .toggle-btn { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #333; }
+        .toggle-btn { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; }
+
+        button.main-btn:hover { transform: scale(1.05); background: rgba(255, 255, 255, 0.3); box-shadow: 0 0 20px rgba(255, 255, 255, 0.6); }
 
         .video-container {
-            width: 100%;
             max-width: 550px;
-            background: rgba(255, 255, 255, 0.1);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 25px;
-            padding: 10px;
+            padding: 15px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
+        .video-container:hover { transform: scale(1.04); }
         .video-container video { width: 100%; border-radius: 15px; display: block; }
 
         .modules-section {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
             width: 100%;
             max-width: 1200px;
         }
 
-        .module-box {
-            background: rgba(255, 255, 255, 0.08);
-            -webkit-backdrop-filter: blur(15px);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
-            color: #fff;
-            padding: 20px;
-            max-height: 400px;
-            overflow-y: auto;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
+      
+       .module-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    color: #fff;
+    transition: 0.3s ease;
+    
+    /* FIX: Scrollbar jeno border kete na jay */
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+    /* Padding-ta ektu bhalobhabe manage kora */
+    padding-top: 15px;    /* Upore ektu jaiga rakha hoyeche */
+    padding-bottom: 15px; /* Nicheo ektu jaiga */
+    padding-left: 20px;
+    padding-right: 10px;  /* Right side e kom padding jate scrollbar-er sathe gap thake */
+}
 
-        /* Scrollbar Fix */
-        .module-box::-webkit-scrollbar { width: 5px; }
-        .module-box::-webkit-scrollbar-track { background: transparent; margin: 10px; }
-        .module-box::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.3); border-radius: 10px; }
+/* --- SCROLLBAR DESIGN (Jate border radius er sathe manay) --- */
+.module-box::-webkit-scrollbar {
+    width: 6px; /* Scrollbar-ta ektu shoru kora holo */
+}
+
+.module-box::-webkit-scrollbar-track {
+    background: transparent; /* Track-ta transparent jate border radius e baje na lage */
+    margin: 15px 0; /* EI LINE-TI MAIN: Upore ebong niche ektu gap rakbe jate konay na baje */
+}
+
+.module-box::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 10px; /* Scrollbar stick-tao rounded hobe */
+}
+
+
+
+
+        .module-box:hover { transform: translateY(-10px); background: rgba(255, 255, 255, 0.2); }
 
         .module-box h3 {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             padding-bottom: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .scroll-down { font-size: 9px; opacity: 0.7; letter-spacing: 1px; }
+        .scroll-down { font-size: 10px; color: #c57863; text-transform: uppercase; }
 
         .module-list { list-style: none; }
         .module-list li {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
-            font-size: 13px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px 15px;
-            border-radius: 12px;
-            transition: 0.3s;
+            margin-bottom: 15px;
+            font-size: 14px;
+            background: rgba(255, 183, 183, 0.445);
+            padding: 8px 12px;
+            border-radius: 10px;
+            transition: transform 0.2s,ease 0.2s;
+        }
+        .module-list li:hover {
+             background: rgba(255, 189, 189, 0.1); 
+             transform: scale(1.05);
         }
 
         .class-count {
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
-            padding: 2px 8px;
-            border-radius: 6px;
-            font-size: 10px;
+            background: #ffcaca;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
         }
 
-        #error-msg { color: #ff4d4d; font-size: 12px; margin-top: 10px; display: none; font-weight: 600; }
+        #error-msg { color: #ff4d4d; font-size: 12px; margin-top: 10px; display: none; }
 
-        .send-here-link, .main-btn {
+        .send-here-link, .main-btn{
             width: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             border-radius: 12px;
-            padding: 12px;
+            padding: 12px 25px;
+            margin-top: 5px;
             margin-bottom: 15px;
-            color: white;
+            color: #ffffff;
             font-weight: 600;
             text-decoration: none;
             display: inline-block;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             cursor: pointer;
-            transition: 0.3s;
             animation: glowPulse 2s infinite ease-in-out;
         }
 
         @keyframes glowPulse {
-            0%, 100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.1); }
-            50% { box-shadow: 0 0 15px rgba(255, 255, 255, 0.4); }
+            0% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); border-color: rgba(255, 255, 255, 0.8); }
+            100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.3); }
         }
 
-        .ml { border-radius: 15px; padding: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        .ml{ animation: glowPulse 2s infinite ease-in-out; border-radius: 20px; padding: 5px;}
 
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
@@ -270,14 +258,14 @@
 
     <div class="login-card">
         <h2 class="ml">MILLIONAIRE JABER</h2>
-        <p class="subtitle">ক্লাসটি শুরু করতে নিচের নাম্বারে পেমেন্ট করে স্ক্রিনশট পাঠান:<br>
-            👉 বিকাশ/নগদ: <b>01342037043</b><br>
-            👉 বাইনান্স আইডি: <b>896991761</b><br>
-            ধন্যবাদ!</p>
-        <a href="https://t.me/millionireclubowner" target="_blank" class="send-here-link">Send Screenshot Here</a>
+        <p class="subtitle">ক্লাসটি শুরু করতে নিচের নাম্বারে পেমেন্ট করে স্ক্রিনশট পাঠান:
+            👉 বিকাশ/নগদ: <span style="color: #3a3a3a;font-weight: bolder;">01342037043</span><br>
+            👉 বাইনান্স আইডি: <span style="color: #414141;font-weight: bolder;">896991761</span><br>
+            স্ক্রিনশট পাওয়ার সাথে সাথেই পাসওয়ার্ড দেওয়া হবে। ধন্যবাদ!</p>
+        <a href="https://t.me/millionireclubowner" target="_blank" class="send-here-link">Send Here</a>
 
         <div class="input-group">
-            <input type="password" id="accessCode" placeholder="Enter secret code...">
+            <input type="password" id="accessCode" placeholder="Your secret code...">
             <span class="toggle-btn" id="eyeIcon" onclick="togglePassword()">👁️</span>
         </div>
         <button class="main-btn" onclick="checkCode()">Verify & Enter</button>
@@ -340,28 +328,22 @@
         </div>
     </div>
 
-    <div class="bubble-wrapper">
-        <div class="glass-bubble"></div>
-        <div class="glass-bubble"></div>
-        <div class="glass-bubble"></div>
-        <div class="glass-bubble"></div>
-        <div class="glass-bubble"></div>
-        <div class="glass-bubble"></div>
-        <div class="glass-bubble"></div>
-        <div class="glass-bubble"></div>
-        <div class="glass-bubble"></div>
-        <div class="glass-bubble"></div>
-    </div>
-
 <script>
-    const loadingScreen = document.getElementById('loader-container');
+    const loadingScreen = document.getElementById('loader-container') || document.getElementById('loading-screen');
 
-    function startLoading(url) {
+    function startLoading(url, isNewTab) {
         if (!url) return;
-        loadingScreen.style.display = 'flex';
+        if (loadingScreen) loadingScreen.style.display = 'flex';
         
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
         setTimeout(() => {
-            window.location.href = url;
+            if (isNewTab && !isMobile) {
+                window.open(url, "_blank");
+                if (loadingScreen) loadingScreen.style.display = 'none'; 
+            } else {
+                window.location.href = url; // History maintain korbe
+            }
         }, 1500); 
     }
 
@@ -371,7 +353,7 @@
 
         if (codeInput === secretCode) {
             localStorage.setItem('mySecretCode', codeInput);
-            startLoading("Main Page/index.html"); 
+            startLoading("Main Page/index.html", false); 
         } else {
             document.getElementById('error-msg').style.display = "block";
             const loginCard = document.querySelector('.login-card');
@@ -380,21 +362,24 @@
         }
     }
 
+    // Back button-e firle jeno loader stuck na hoye thake
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+            if (loadingScreen) loadingScreen.style.display = 'none';
+        }
+    });
+
     function togglePassword() {
         const input = document.getElementById('accessCode');
         const icon = document.getElementById('eyeIcon');
         input.type = (input.type === "password") ? "text" : "password";
-        icon.innerText = (input.type === "password") ? "👁️" : "🔒";
+        if (icon) icon.innerText = (input.type === "password") ? "👁️" : "🔒";
     }
 
     window.onload = function() {
         const savedCode = localStorage.getItem('mySecretCode');
         if (savedCode) { document.getElementById('accessCode').value = savedCode; }
     };
-
-    window.addEventListener('pageshow', function(event) {
-        if (loadingScreen) loadingScreen.style.display = 'none';
-    });
 </script>
 </body>
 </html>
