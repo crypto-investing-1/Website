@@ -1,71 +1,21 @@
- body {
-    min-height: 100vh;
-    
-   
+  body {
+            min-height: 100vh;
+            align-items: center;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            overflow-x: hidden;
+        }
 
-    /* Deep Professional Dark Gradient */
-    background: linear-gradient(-45deg, #0f172a, #1e293b, #111827);
-    background-size: 400% 400%;
-    animation: darkFlow 15s ease-in-out infinite;
-   
-    overflow-x: hidden;
-    position: relative;
-    color: white;
-}
-
-/* --- Constant Bubble Animation --- */
-.bubble-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    overflow: hidden;
-}
-
-.glass-bubble {
-    position: absolute;
-    bottom: -150px;
-    background: rgba(255, 255, 255, 0.05); /* খুব হালকা গ্লাসি সাদা */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
-    border-radius: 50%;
-    animation: floatUp 12s infinite linear;
-}
-
-/* বিভিন্ন সাইজ ও পজিশনের বাবল */
-.glass-bubble:nth-child(1) { left: 5%; width: 100px; height: 100px; animation-duration: 10s; }
-.glass-bubble:nth-child(2) { left: 15%; width: 60px; height: 60px; animation-duration: 15s; animation-delay: 2s; }
-.glass-bubble:nth-child(3) { left: 30%; width: 120px; height: 120px; animation-duration: 12s; animation-delay: 4s; }
-.glass-bubble:nth-child(4) { left: 45%; width: 80px; height: 80px; animation-duration: 18s; animation-delay: 1s; }
-.glass-bubble:nth-child(5) { left: 60%; width: 150px; height: 150px; animation-duration: 20s; animation-delay: 5s; }
-.glass-bubble:nth-child(6) { left: 75%; width: 50px; height: 50px; animation-duration: 11s; animation-delay: 3s; }
-.glass-bubble:nth-child(7) { left: 85%; width: 90px; height: 90px; animation-duration: 14s; animation-delay: 7s; }
-.glass-bubble:nth-child(8) { left: 25%; width: 40px; height: 40px; animation-duration: 9s; animation-delay: 2s; }
-.glass-bubble:nth-child(9) { left: 55%; width: 110px; height: 110px; animation-duration: 16s; animation-delay: 6s; }
-.glass-bubble:nth-child(10) { left: 90%; width: 70px; height: 70px; animation-duration: 13s; animation-delay: 1s; }
-
-
-/* এনিমেশন কীফ্রেমস */
-@keyframes darkFlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-@keyframes floatUp {
-    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-    20% { opacity: 0.4; }
-    80% { opacity: 0.4; }
-    100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
-}
-   
-
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
 header{
     background-color: transparent;
-    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.281);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.062);
     padding: 20px;
     position: sticky;
     top: 0;
@@ -76,17 +26,22 @@ header{
 .navbar{
     
     border-radius: 10px;
-    background: linear-gradient(45deg, #fff4f481, #ffeae449, #a5a5a55b, #ffffff5e);
+    background: linear-gradient(45deg, #ff9a9dd8, #f0cdc3, #ffbcaa, #b6ccf3);
  
 }
 .navbar-bran{
     text-decoration: none;
      font-size: 22px;
-    color: #ffffffdc;  
-    text-shadow: 2px 2px 4px rgba(155, 155, 155, 0.432);
+     font-weight: 700;
+     color: #ffe6db;
+     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.185);
+     transition: transform 0.3s ease;
+     backdrop-filter: blur(5px);
+    color: #ffe6db;
+    text-shadow: 2px 2px 4px rgba(175, 175, 175, 0.61);
     font-weight: 700;
     transition: transform 0.3s ease;
-    
+    backdrop-filter: blur(5px);
 }
 .navbar-bran:hover{
     transform: scale(1.05);
@@ -109,10 +64,11 @@ header{
     text-decoration: none;
      font-size: 18px;
      font-weight: 500;
-    color: #ffffffdc;
+    color: #ffe6db;
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.185);
     font-weight: 700;
     transition: transform 0.3s ease;
+    backdrop-filter: blur(5px);
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -155,7 +111,7 @@ header{
 
 
 .unlock{
-    color: #fff7f4e0;
+    color: #ffe6db;
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.185);
     font-weight: 700;
     transition: transform 0.3s ease;
@@ -165,7 +121,7 @@ header{
 
 
 .lead{
-    color: #ffffff;
+    color: #b38e8e;
     margin-bottom: 30px;
 }
 
@@ -178,8 +134,8 @@ header{
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.185);
     backdrop-filter: blur(15px); /* পেছনের অংশ ঝাপসা করার জন্য */
     -webkit-backdrop-filter: blur(15px); /* Safari ব্রাউজারের জন্য */
-    border: 2px solid rgba(238, 238, 238, 0.192);
-    box-shadow: 0px 10px 20px 0 rgba(243, 243, 243, 0.11);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(161, 161, 161, 0.2);
     border-radius: 20px;
     padding: 10px;   
     margin-left: 43%;
@@ -199,11 +155,11 @@ header{
 }
 
 .basic-box, .advance-box, .legend-box{
-    border: 3px solid rgba(255, 255, 255, 0.123);
+    border: 3px solid rgba(250, 250, 250, 0.205);
     border-radius: 10px;
     height: 500px;
     overflow-y: auto;
-    box-shadow: 5px 5px 20px rgba(255, 255, 255, 0.137);
+    box-shadow: 5px 5px 5px rgba(109, 109, 109, 0.2);
      margin-bottom: 40px;
      border-radius: 20px;
      transition: transform 0.3s ease;
@@ -212,22 +168,22 @@ header{
 }
 .basic-box:hover, .advance-box:hover, .legend-box:hover{
     transform: scale(1.06);
-    box-shadow: 10px 10px 35px rgba(192, 192, 192, 0.123);
+    box-shadow: 10px 10px 15px rgba(109, 109, 109, 0.4);
 }
 
 .basic-box ul li, .advance-box ul li, .legend-box ul li{
 
     padding: 10px;
     font-size: 18px;
-    color: #eeeeeebb;
+    color: #d68989;
     font-weight: 500;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 
 .class-count {
-    background-color: #5e5e5e62;
-    color: #eeeeee;
+    background-color: #ffb3b3;
+    color: #fff;
     padding: 2px 8px;
     border-radius: 12px;
     font-size: 15px;
@@ -237,7 +193,6 @@ header{
 }
 .class-count:hover {
     transform: scale(1.1);
-    background-color: #9c9c9c;
 }
 
 ul li{
@@ -248,16 +203,15 @@ ul li{
 }
 
 ul li:hover {
-    background-color: rgba(212, 212, 212, 0.281);
+    background-color: rgba(255, 179, 179, 0.5);
     color: #fff;
     cursor: pointer;
     border-radius: 10px;
-    transition: transform 0.3s ease;
-    transform: scale(1.04);
+    transition: transform scale(1.10);
 }
 
 .modules{
-    color: #ffffffd3;
+    color: #fab4b4;
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.185);
      font-weight: 700;
      transition: transform 0.3s ease;
@@ -280,12 +234,12 @@ ul li:hover {
 
 
 .treding-chart{
-    border: 3px solid rgba(255, 255, 255, 0.226);
+    border: 3px solid rgba(255, 217, 217, 0.712);
     border-radius: 25px;
     width: 100%;
     height: 500px;
     overflow-y: auto;
-    box-shadow: 5px 5px 20px rgba(250, 250, 250, 0.2);
+    box-shadow: 5px 5px 5px rgba(109, 109, 109, 0.2);
     margin-bottom: 40px;
 }
 
@@ -329,14 +283,14 @@ ul li:hover {
 
 .wish-content h2 {
     font-size: 24px;
-    color: #f5f3f3;
+    color: #bd8585;
     margin-bottom: 15px;
     font-weight: 600;
 }
 
 .wish-content p {
     font-size: 18px;
-    color: #f1f1f1d0;
+    color: #9e8484;
     font-style: italic; /* Italic dile message-ti aro personal lage */
     max-width: 600px;
     margin: 0 auto;
@@ -346,22 +300,22 @@ ul li:hover {
 .wish-divider {
     height: 3px;
     width: 50px;
-    background-color: #8f8f8f; /* Apnar "Class Count" badge-er color-er shathe match kore */
+    background-color: #ffb3b3; /* Apnar "Class Count" badge-er color-er shathe match kore */
     margin: 20px auto 0;
     border-radius: 2px;
 }
 .wish-divider- {
     height: 3px;
     width: 100%;
-    background-image: linear-gradient(124deg ,rgb(109, 109, 109),rgba(165, 165, 165, 0.404),rgba(238, 238, 238, 0.452));
+    background-image: linear-gradient(124deg ,pink,rgb(255, 182, 182),rgba(255, 157, 157, 0.685));
     margin: 20px auto 0;
     border-radius: 2px;
 }
 
 video{
-   border: #ffffff36 solid 3px;
+   border: #ffc8c8 solid 3px;
     border-radius: 20px;
-    box-shadow: 10px 10px 20px rgba(184, 184, 184, 0.2);
+    box-shadow: 10px 10px 20px rgba(44, 43, 43, 0.2);
     backdrop-filter: blur(5px);
      transition: transform 0.3s ease;
 }
@@ -371,13 +325,13 @@ video:hover{
     
 }
 .p-succec{
-    color: #ffffffd2;
-    box-shadow: 5px 5px 20px rgba(226, 226, 226, 0.082);
+    color: #cc9494;
+    box-shadow: 5px 5px 10px rgba(109, 109, 109, 0.2);
      transition: transform 0.3s ease;
      backdrop-filter: blur(5px);
      padding: 10px;
     line-height: 2.3;
-    border: 3px solid rgba(238, 238, 238, 0.178);
+    border: 3px solid rgba(255, 179, 179, 0.5);
     border-radius: 20px;
 
     transition: transform 0.3s ease;
