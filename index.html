@@ -84,14 +84,14 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 40px;
+            padding: 25px;
             border-radius: 30px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 400px;
             text-align: center;
             animation: float 4s ease-in-out infinite;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
         }
 
         @keyframes float {
@@ -102,28 +102,58 @@
         h2 { color: #fff; margin-bottom: 10px; }
         .subtitle { color: rgba(255, 255, 255, 0.8); font-size: 12px; margin-bottom: 5px; }
 
-        .input-group { position: relative; margin-bottom: 20px; }
+        .input-group { position: relative; margin-bottom: 10px; }
         input {
             width: 100%; padding: 14px 15px; border-radius: 15px; border: none; outline: none;
             background: rgba(255, 255, 255, 0.9); font-size: 15px;
         }
-        .toggle-btn { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; }
+        .toggle-btn { position: absolute; right: 15px; top: 40%; transform: translateY(-50%); cursor: pointer; }
 
         button.main-btn:hover { transform: scale(1.05); background: rgba(255, 255, 255, 0.3); box-shadow: 0 0 20px rgba(255, 255, 255, 0.6); }
 
-        .video-container {
-            max-width: 550px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 25px;
-            padding: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        .video-container:hover { transform: scale(1.04); }
-        .video-container video { width: 100%; border-radius: 15px; display: block; }
+ /* পুরো ভিডিওর সারিটি মাঝখানে রাখার জন্য */
+.video-row {
+    display: flex;
+    justify-content: center; /* ভিডিওগুলো মাঝখানে আনবে */
+    align-items: center;
+    gap: 20px; /* দুই ভিডিওর মাঝখানের গ্যাপ */
+    width: 100%;
+    max-width: 1000px; /* স্ক্রিনে ভিডিওর চওড়া কতটুকু হবে তা এখান থেকে নিয়ন্ত্রণ করবেন */
+    margin: 20px auto; /* উপরে-নিচে গ্যাপ এবং মাঝখানে সেট করা */
+}
+
+/* প্রতিটি ভিডিওর বক্সের ডিজাইন */
+.video-container {
+    flex: 1; /* দুটি ভিডিও সমান জায়গা নিবে */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    max-width: 450px; /* ভিডিও খুব বেশি বড় হওয়া আটকাবে */
+   
+}
+
+/* ভিডিওর ভেতরের প্লেয়ার যেন বক্সের সমান হয় */
+.video-container video {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    display: block;
+}
+
+/* মোবাইল ফোনের জন্য ডিজাইন (একটির নিচে আরেকটি যাবে) */
+@media (max-width: 768px) {
+    .video-row {
+        flex-direction: column;
+        padding: 0 20px;
+    }
+    .video-container {
+        max-width: 100%;
+    }
+}
 
         .modules-section {
             display: grid;
@@ -295,7 +325,7 @@
         <div style="font-family: 'Arial', sans-serif; display: flex; align-items: center; gap: 15px;">
             
   <div>
-    <span style="color: #ff00009a; text-decoration: line-through; font-size: 32px; margin-left: 50px;">$100</span>
+    <span style="color: #ff00009a; text-decoration: line-through; font-size: 32px; margin-left: 70px;">$100</span>
     <span style="color: #37ad68; font-size: 20px; font-weight: bold; margin-left: 5px;animation: pulse 2s infinite;">$49</span>
   </div>
 
@@ -305,7 +335,7 @@
 </div>
 
 
-        <p class="subtitle">ক্লাসটি শুরু করতে নিচের নাম্বারে পেমেন্ট করে স্ক্রিনশট পাঠান:
+        <p class="subtitle">ক্লাসটি শুরু করতে নিচের নাম্বারে পেমেন্ট করে স্ক্রিনশট পাঠান.......
             👉 বিকাশ/নগদ: <span style="color: #3a3a3a;font-weight: bolder;text-decoration: none;">01342037043</span><br>
             👉 বাইনান্স আইডি: <span style="color: #414141;font-weight: bolder;">896991761</span><br>
             স্ক্রিনশট পাওয়ার সাথে সাথেই পাসওয়ার্ড দেওয়া হবে। ধন্যবাদ!</p>
@@ -318,12 +348,19 @@
         <button class="main-btn" onclick="checkCode()">Verify & Enter</button>
         <p id="error-msg">❌ Access Denied! Incorrect code.</p>
     </div>
+   <div class="video-row">
+    <div class="video-container">
+        <p>Please watch the full video! ⏳🎥</p>
+        <iframe width="100%" height="270" src="https://www.youtube.com/embed/43OJJgnp0D8?si=CfAJ8Z2hABYxJWYC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 20px;"></iframe>
+    </div>
 
     <div class="video-container">
+        <p>Keep trying for a better life. ✨</p>
         <video controls playsinline autoplay muted loop>
             <source src="video/Img 7904.mp4" type="video/mp4">
         </video>
     </div>
+</div>
 
     <div class="modules-section">
         <div class="module-box">
@@ -374,6 +411,22 @@
             </ul>
         </div>
     </div>
+
+    <img src="video/coy_muse-facebook-7442092_1280.png" alt="Contact Us" class="contact-us" onclick="window.open('https://www.facebook.com/junaid.al.jaber', '_blank')">
+
+    <style>
+        .contact-us {
+            
+            position: fixed;
+            right: 10px;
+            bottom: 40px;
+            margin-top: 30px;
+            width: 40px;
+            border-radius: 50%;
+            animation: glowPulse 2s infinite ease-in-out;
+        }
+
+    </style>
 
 <script>
     const loadingScreen = document.getElementById('loader-container') || document.getElementById('loading-screen');
