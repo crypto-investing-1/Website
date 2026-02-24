@@ -116,7 +116,7 @@ header{
 
 .lead{
     color: #dfdfdf;
-    margin-bottom: 30px;
+    margin-bottom: 2-0px;
 }
 
 .contact-b{
@@ -159,6 +159,7 @@ header{
      transition: transform 0.3s ease;
      overflow-x: hidden;
      -webkit-overflow-scrolling: touch;
+     
 }
 .basic-box:hover, .advance-box:hover, .legend-box:hover{
     transform: scale(1.06);
@@ -368,5 +369,8 @@ video:hover{
 }
 .welcome-text{
     margin-bottom: 40px;
+}
+.basic-box{
+    margin-top: 100px;
 }
 }
