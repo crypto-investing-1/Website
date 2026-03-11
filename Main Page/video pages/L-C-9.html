@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glassy Loading</title>
+    <style>
+        /* Background design */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* The Glassy Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px 60px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            text-align: center;
+            
+            /* Animation call */
+            animation: float 3s ease-in-out infinite;
+        }
+
+        h1 {
+            color: white;
+            font-size: 24px;
+            letter-spacing: 1px;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Progress Bar (Optional extra touch) */
+        .loader-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .loader-fill {
+            width: 40%;
+            height: 100%;
+            background: #fff;
+            animation: loading 2s linear infinite;
+        }
+
+        @keyframes loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(250%); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-card">
+        <h1>This Class is Loading...</h1>
+        <div class="loader-bar">
+            <div class="loader-fill"></div>
+        </div>
+    </div>
+
+</body>
+</html>
