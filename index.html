@@ -317,37 +317,162 @@
 
 
 
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(-45deg, #b8b4b493, #9c9b9bc7, #af9daabb, #645e72);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            padding: 50px 20px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 25px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* --- Updated Timer Area --- */
+        .eid-countdown-area {
+            margin: 15px 0;
+        }
+
+        .timer-label {
+            color: #e67e22;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        #countdown {
+            color: #fff;
+            font-size: 22px;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            background: rgba(0, 0, 0, 0.1);
+            padding: 5px 15px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .price-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .main-btn, .send-here-link {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 12px;
+            padding: 12px;
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .input-group input {
+            width: 100%; padding: 12px; border-radius: 12px; border: none; margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
     <div class="login-card">
-        <h2 class="ml">MILLIONAIRE JABER</h2>
-        <p style="color: #e67e22; font-size: 19px; margin-top: 5px; font-weight: bold;animation: glow 1.5s infinite alternate;">
-  🔥 EID OFFER! CLASS FEES
-</p>
-        <div style="font-family: 'Arial', sans-serif; display: flex; align-items: center; gap: 15px;">
-            
-  <div>
-    <span style="color: #ff00009a; text-decoration: line-through; font-size: 32px; margin-left: 70px;">$100</span>
-    <span style="color: #37ad68; font-size: 20px; font-weight: bold; margin-left: 5px;animation: pulse 2s infinite;">$49</span>
-  </div>
+        <h2 style="color: white; margin-bottom: 10px;">MILLIONAIRE JABER</h2>
+        
+        <div class="eid-countdown-area">
+            <span class="timer-label">🌙 Eid Offer Ends In:</span>
+            <div id="countdown">Loading...</div>
+        </div>
 
-  <span style="animation: shake 0.5s infinite alternate; background-color: #e74c3c; color: white; padding: 4px 10px; border-radius: 5px; font-size: 14px; font-weight: bold; text-transform: uppercase;">
-    51% OFF
-  </span>
-</div>
+        <div class="price-section">
+            <span style="color: #ff4d4d; text-decoration: line-through; font-size: 26px;">$100</span>
+            <span style="color: #2ecc71; font-size: 20px; font-weight: bold;">$49</span>
+            <span style="background: #e74c3c; color: white; padding: 2px 8px; border-radius: 5px; font-size: 12px; animation: pulse 1s infinite;">51% OFF</span>
+        </div>
 
+        <p style="color: #eee; font-size: 11px; margin-bottom: 15px;">বিকাশ/নগদ: 01342037043 | বাইনান্স আইডি: 896991761</p>
 
-        <p class="subtitle">ক্লাসটি শুরু করতে নিচের নাম্বারে পেমেন্ট করে স্ক্রিনশট পাঠান.......
-            👉 বিকাশ/নগদ: <span style="color: #3a3a3a;font-weight: bolder;text-decoration: none;">01342037043</span><br>
-            👉 বাইনান্স আইডি: <span style="color: #414141;font-weight: bolder;">896991761</span><br>
-            স্ক্রিনশট পাওয়ার সাথে সাথেই পাসওয়ার্ড দেওয়া হবে। ধন্যবাদ!</p>
         <a href="https://t.me/millionireclubowner" target="_blank" class="send-here-link">Send Here</a>
 
         <div class="input-group">
-            <input type="password" id="accessCode" placeholder="Your secret code...">
-            <span class="toggle-btn" id="eyeIcon" onclick="togglePassword()">👁️</span>
+            <input type="password" id="accessCode" placeholder="Enter Secret Code">
         </div>
         <button class="main-btn" onclick="checkCode()">Verify & Enter</button>
-        <p id="error-msg">❌ Access Denied! Incorrect code.</p>
     </div>
+
+<script>
+    // ২০শে মার্চ ২০২৬ এর জন্য টাইমার সেট করা হয়েছে
+    const targetDate = new Date("March 20, 2026 00:00:00").getTime();
+
+    const updateTimer = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+        if (distance < 0) {
+            clearInterval(updateTimer);
+            document.getElementById("countdown").innerHTML = "EID MUBARAK!";
+        }
+    }, 1000);
+
+    function checkCode() {
+        const code = document.getElementById('accessCode').value;
+        if (code === "target500") {
+            window.location.href = "Main Page/index.html";
+        } else {
+            alert("Wrong Code!");
+        }
+    }
+</script>
    <div class="video-row">
     <div class="video-container">
         <p>Please watch the full video! ⏳🎥</p>
