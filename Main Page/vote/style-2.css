@@ -1,0 +1,92 @@
+  body {
+            min-height: 100vh;
+            align-items: center;
+            background: linear-gradient(-45deg, #b8b4b493, #9c9b9bc7, #af9daabb, #645e72);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+
+
+
+
+.box {
+    height: 700px;
+    margin-top: 7%;
+    margin-bottom: 2%;
+    padding: 2%; /* Tumi padding ektu komate paro jodi box beshi boro lage */
+    border-radius: 20px;
+    
+    /* Main Glassy Effect */
+    background: rgba(255, 255, 255, 0.15); /* Halka white opacity */
+    backdrop-filter: blur(25px);           /* Blur ektu bariye dile glass look valo hoy */
+    -webkit-backdrop-filter: blur(15px);
+    background-color: transparent;
+    
+    /* Border-e light reflection */
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    
+    /* Shadow for depth */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease; /* Hover effect er jonno transition */
+}
+
+.box:hover{
+    transform: scale(1.01);
+}
+
+
+.video{
+    width: 90%;
+    height:  500px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    margin-left: 5%;
+}
+
+h1 {
+    display: block;          /* Flex ব্যবহার করার দরকার নেই */
+    width: fit-content;      
+    margin-left: auto;       /* বাম দিক থেকে অটো মার্জিন */
+    margin-right: auto;      /* ডান দিক থেকে অটো মার্জিন */
+    text-align: center;
+    color: #424242;
+    text-shadow: 2px 2px 4px rgba(196, 150, 150, 0.5);
+    font-size: 36px;
+    margin-bottom: 2px;
+    transition: transform 0.3s ease;
+}
+h1:hover{
+   
+    text-shadow: 2px 2px 4px rgba(196, 150, 150, 0.5);
+    font-size: 36px;
+    margin-bottom: 2px;
+    transform: matrix(1.05, 0, 0, 1.05, 0, 0); /* Scale up by 5% */
+    border-radius: 5px;
+    
+    
+}
+
+.devider{
+    width: 16%;
+    height: 2px;
+    background-color: #777777;
+    
+    text-shadow: 2px 2px 4px rgba(196, 150, 150, 0.5);
+}
+p{
+    margin-left: 5%;
+    color: #242424;
+    text-shadow: 2px 2px 4px rgba(196, 150, 150, 0.5);
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
