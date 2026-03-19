@@ -444,23 +444,31 @@
     </div>
 
 <script>
-    // ২০শে মার্চ ২০২৬ এর জন্য টাইমার সেট করা হয়েছে
-    const targetDate = new Date("March 20, 2026 00:00:00").getTime();
+    // ২১শে মার্চ ২০২৬ রাত ১২টার (00:00:00) জন্য টাইমার সেট করা হয়েছে
+    const targetDate = new Date("March 21, 2026 00:00:00").getTime();
 
     const updateTimer = setInterval(function() {
         const now = new Date().getTime();
         const distance = targetDate - now;
 
+        // দিন, ঘণ্টা, মিনিট এবং সেকেন্ড গণনা
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+        // ডিসপ্লে আপডেট
+        const display = document.getElementById("countdown");
+        if (display) {
+            display.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+        }
 
+        // সময় শেষ হয়ে গেলে
         if (distance < 0) {
             clearInterval(updateTimer);
-            document.getElementById("countdown").innerHTML = "EID MUBARAK!";
+            if (display) {
+                display.innerHTML = "EID MUBARAK!";
+            }
         }
     }, 1000);
 
