@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Lucky Draw with Celebration</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        /* Modern Glassmorphism Design */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body {
+            background: radial-gradient(circle, #0f172a, #1e293b, #000);
+            height: 100vh;
+            display: flex;
+            justify-content: center; align-items: center;
+            color: white; overflow: hidden;
+            position: relative;
+        }
+
+        /* Confetti Canvas position */
+        #confetti-canvas {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 10;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 40px;
+            border-radius: 35px;
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+            width: 90%; max-width: 420px;
+            position: relative; z-index: 20;
+            transition: transform 0.3s ease;
+        }
+
+        h2 { font-weight: 300; letter-spacing: 2px; margin-bottom: 5px; text-transform: uppercase; color: #f1f5f9; }
+        p.subtitle { color: #94a3b8; font-size: 0.95rem; margin-bottom: 30px; }
+
+        .display-amount {
+            font-size: 6rem; font-weight: 900; margin: 25px 0;
+            background: linear-gradient(to bottom, #ffffff, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(56, 189, 248, 0.4);
+            transition: all 0.5s ease;
+        }
+
+        button {
+            background: linear-gradient(45deg, #0ea5e9, #2563eb);
+            border: none; padding: 18px; border-radius: 18px;
+            color: white; font-size: 1.2rem; font-weight: 600;
+            cursor: pointer; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            width: 100%;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+        }
+
+        button:hover:not(:disabled) { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(37, 99, 235, 0.6); }
+        button:active { transform: scale(0.97); }
+        button:disabled { background: #334155; cursor: not-allowed; transform: none; box-shadow: none; opacity: 0.7; }
+
+        .footer-msg { margin-top: 30px; font-size: 0.85rem; color: #64748b; font-style: italic; }
+        b { color: #38bdf8; font-weight: 600; }
+
+        /* Animation class for final result */
+        .pop-in { animation: popIn 0.5s ease; }
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <div class="card" id="mainCard">
+        <h2>Lucky Draw</h2>
+        <p class="subtitle">Try your luck to join our premium class!</p>
+        
+        <div id="amountDisplay" class="display-amount">$??</div>
+        
+        <button id="drawBtn" onclick="startLuckyDraw()">Draw My Luck</button>
+        
+        <p id="statusMsg" class="footer-msg">Limit: One draw per device</p>
+    </div>
+
+    <script>
+        // Check local storage on load
+        window.onload = function() {
+            const savedPrice = localStorage.getItem('classRegistrationPrice');
+            if (savedPrice) {
+                renderFinalState(savedPrice, false); // false means no confetti on reload
+            }
+        };
+
+        function startLuckyDraw() {
+            const btn = document.getElementById('drawBtn');
+            const display = document.getElementById('amountDisplay');
+            const card = document.getElementById('mainCard');
+            
+            btn.disabled = true;
+            btn.innerText = "Drawing Your Price...";
+            card.style.transform = "scale(0.98)"; // Slight press effect
+
+            let counter = 0;
+            const totalSteps = 60; // How many numbers flash
+
+            const interval = setInterval(() => {
+                // Animation Logic: Show random numbers between 0 and 31
+                const randomAnimNum = Math.floor(Math.random() * 32); 
+                display.innerText = "$" + randomAnimNum;
+                counter++;
+
+                if (counter > totalSteps) {
+                    clearInterval(interval);
+                    card.style.transform = "scale(1)"; // Reset card scale
+                    
+                    // Final Unique Result Logic: strictly 20 to 31
+                    // Combine Random + Timestamp for high uniqueness
+                    const seed = Math.random() + (new Date().getTime() / 1000000000000);
+                    const finalResult = Math.floor(seed * (31 - 20 + 1)) + 20;
+                    
+                    // Limit check (in case seed goes slightly over 31 due to timestamp)
+                    const cappedResult = Math.min(Math.max(finalResult, 20), 31);
+                    
+                    // Save to device storage
+                    localStorage.setItem('classRegistrationPrice', cappedResult);
+                    
+                    renderFinalState(cappedResult, true); // true means show confetti
+                }
+            }, 50); // Speed of number flashing
+        }
+
+        function renderFinalState(amount, showCelebration) {
+            const display = document.getElementById('amountDisplay');
+            const btn = document.getElementById('drawBtn');
+            const status = document.getElementById('statusMsg');
+
+            display.innerText = "$" + amount;
+            // Success color gradient
+            display.style.background = "linear-gradient(to bottom, #4ade80, #16a34a)";
+            display.style.webkitBackgroundClip = "text";
+            display.classList.add('pop-in'); // Add animation class
+            
+            btn.innerText = "Price Locked: $" + amount;
+            btn.disabled = true;
+            
+            status.innerHTML = `Congratulations! Your special price is <b>$${amount}</b>. <br>Pay now to secure your spot!`;
+
+            if (showCelebration) {
+                triggerConfetti();
+            }
+        }
+
+        // celebration effect
+        function triggerConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            const myConfetti = confetti.create(canvas, { resize: true });
+            
+            // Fire multiple bursts
+            myConfetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+            setTimeout(() => myConfetti({ particleCount: 100, spread: 100, origin: { y: 0.7 } }), 200);
+            setTimeout(() => myConfetti({ particleCount: 100, spread: 120, origin: { y: 0.8 } }), 400);
+        }
+    </script>
+</body>
+</html>
