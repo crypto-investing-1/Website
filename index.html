@@ -3,101 +3,670 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unique Lucky Draw</title>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <title>Secure Access | Millionaire JABER</title>
+    <link rel="icon" href="Main Page/compress-i/letter-l_8133842.png" type="image/png">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
         body {
-            background: radial-gradient(circle, #0f172a, #1e293b, #000);
-            height: 100vh; display: flex; justify-content: center; align-items: center;
-            color: white; overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(-45deg, #b8b4b493, #9c9b9bc7, #af9daabb, #645e72);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            padding: 50px 20px;
+            overflow-x: hidden;
         }
-        .card {
-            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1); padding: 50px 30px;
-            border-radius: 30px; text-align: center; width: 90%; max-width: 400px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-        .display-amount {
-            font-size: 5.5rem; font-weight: 900; margin: 20px 0;
-            background: linear-gradient(to bottom, #ffffff, #38bdf8);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+
+        /* --- New CSS Loader Section --- */
+        #loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: none; 
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 9999;
         }
-        button {
-            background: linear-gradient(45deg, #0ea5e9, #2563eb);
-            border: none; padding: 16px; border-radius: 15px;
-            color: white; font-size: 1.1rem; font-weight: 600;
-            cursor: pointer; width: 100%; transition: 0.3s;
+
+        .classic-loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 20px;
         }
-        button:disabled { background: #334155; cursor: not-allowed; opacity: 0.7; }
-        .footer-msg { margin-top: 25px; font-size: 0.85rem; color: #64748b; }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            color: white;
+            font-weight: 400;
+            letter-spacing: 2px;
+            font-size: 14px;
+            text-transform: uppercase;
+            animation: pulseText 1.5s infinite;
+        }
+
+        @keyframes pulseText {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        /* --- End Loader Section --- */
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 25px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            animation: float 4s ease-in-out infinite;
+            margin-bottom: 10px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h2 { color: #fff; margin-bottom: 10px; }
+        .subtitle { color: rgba(255, 255, 255, 0.8); font-size: 12px; margin-bottom: 5px; }
+
+        .input-group { position: relative; margin-bottom: 10px; }
+        input {
+            width: 100%; padding: 14px 15px; border-radius: 15px; border: none; outline: none;
+            background: rgba(255, 255, 255, 0.9); font-size: 15px;
+        }
+        .toggle-btn { position: absolute; right: 15px; top: 40%; transform: translateY(-50%); cursor: pointer; }
+
+        button.main-btn:hover { transform: scale(1.05); background: rgba(255, 255, 255, 0.3); box-shadow: 0 0 20px rgba(255, 255, 255, 0.6); }
+
+ /* পুরো ভিডিওর সারিটি মাঝখানে রাখার জন্য */
+.video-row {
+    display: flex;
+    justify-content: center; /* ভিডিওগুলো মাঝখানে আনবে */
+    align-items: center;
+    gap: 20px; /* দুই ভিডিওর মাঝখানের গ্যাপ */
+    width: 100%;
+    max-width: 1000px; /* স্ক্রিনে ভিডিওর চওড়া কতটুকু হবে তা এখান থেকে নিয়ন্ত্রণ করবেন */
+    margin: 20px auto; /* উপরে-নিচে গ্যাপ এবং মাঝখানে সেট করা */
+}
+
+/* প্রতিটি ভিডিওর বক্সের ডিজাইন */
+.video-container {
+    flex: 1; /* দুটি ভিডিও সমান জায়গা নিবে */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    max-width: 450px; /* ভিডিও খুব বেশি বড় হওয়া আটকাবে */
+   
+}
+
+/* ভিডিওর ভেতরের প্লেয়ার যেন বক্সের সমান হয় */
+.video-container video {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    display: block;
+}
+
+/* মোবাইল ফোনের জন্য ডিজাইন (একটির নিচে আরেকটি যাবে) */
+@media (max-width: 768px) {
+    .video-row {
+        flex-direction: column;
+        padding: 0 20px;
+    }
+    .video-container {
+        max-width: 100%;
+    }
+}
+
+        .modules-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+      
+       .module-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    color: #fff;
+    transition: 0.3s ease;
+    
+    /* FIX: Scrollbar jeno border kete na jay */
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+    /* Padding-ta ektu bhalobhabe manage kora */
+    padding-top: 15px;    /* Upore ektu jaiga rakha hoyeche */
+    padding-bottom: 15px; /* Nicheo ektu jaiga */
+    padding-left: 20px;
+    padding-right: 10px;  /* Right side e kom padding jate scrollbar-er sathe gap thake */
+}
+
+/* --- SCROLLBAR DESIGN (Jate border radius er sathe manay) --- */
+.module-box::-webkit-scrollbar {
+    width: 6px; /* Scrollbar-ta ektu shoru kora holo */
+}
+
+.module-box::-webkit-scrollbar-track {
+    background: transparent; /* Track-ta transparent jate border radius e baje na lage */
+    margin: 15px 0; /* EI LINE-TI MAIN: Upore ebong niche ektu gap rakbe jate konay na baje */
+}
+
+.module-box::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 10px; /* Scrollbar stick-tao rounded hobe */
+}
+
+
+
+
+        .module-box:hover { transform: translateY(-10px); background: rgba(255, 255, 255, 0.2); }
+
+        .module-box h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .scroll-down { font-size: 10px; color: #c57863; text-transform: uppercase; }
+
+        .module-list { list-style: none; }
+        .module-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 14px;
+            background: rgba(65, 65, 65, 0.13);
+            padding: 8px 12px;
+            border-radius: 10px;
+            transition: transform 0.2s,ease 0.2s;
+        }
+        .module-list li:hover {
+             background: rgba(71, 71, 71, 0.1); 
+             transform: scale(1.05);
+        }
+
+        .class-count {
+            background: #757575;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        #error-msg { color: #ff4d4d; font-size: 12px; margin-top: 10px; display: none; }
+
+        .send-here-link, .main-btn{
+            width: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 12px;
+            padding: 12px 25px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            color: #ffffff;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            animation: glowPulse 2s infinite ease-in-out;
+        }
+
+        @keyframes glowPulse {
+            0% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); border-color: rgba(255, 255, 255, 0.8); }
+            100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.3); }
+        }
+
+        .ml{ animation: glowPulse 2s infinite ease-in-out; border-radius: 20px; padding: 5px;}
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h2 style="font-weight: 300;">LUCKY DRAW</h2>
-        <div id="amountDisplay" class="display-amount">$??</div>
-        <button id="drawBtn" onclick="generateUniquePrice()">Draw My Luck</button>
-        <p id="statusMsg" class="footer-msg">Only one draw allowed per device</p>
+    <div id="loader-container">
+        <div class="classic-loader"></div>
+        <div class="loader-text">Verifying Access</div>
     </div>
 
-    <script>
-        window.onload = function() {
-            const saved = localStorage.getItem('unique_class_price');
-            if (saved) { showFinal(saved, false); }
-        };
 
-        function generateUniquePrice() {
-            const btn = document.getElementById('drawBtn');
-            const display = document.getElementById('amountDisplay');
-            btn.disabled = true;
 
-            let counter = 0;
-            let interval = setInterval(() => {
-                // Animation: 0-31 random numbers
-                display.innerText = "$" + Math.floor(Math.random() * 32);
-                counter++;
 
-                if (counter > 50) {
-                    clearInterval(interval);
-                    
-                    // --- HIGHLY UNIQUE LOGIC ---
-                    // 1. Browser er cryptographically strong random number nibo
-                    const array = new Uint32Array(1);
-                    window.crypto.getRandomValues(array);
-                    const cryptoRandom = array[0] / (0xffffffff + 1);
 
-                    // 2. Click korar timing (milliseconds) nibo jate duita device same na hoy
-                    const ms = new Date().getMilliseconds();
-                    const mixedSeed = (cryptoRandom + (ms / 1000)) / 2;
 
-                    // 3. Result calculation (20 to 31)
-                    const finalPrice = Math.floor(mixedSeed * (31 - 20 + 1)) + 20;
-                    
-                    localStorage.setItem('unique_class_price', finalPrice);
-                    showFinal(finalPrice, true);
-                }
-            }, 50);
+    <style>
+  /* Price Pulse Animation */
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); color: #2c2c2c; }
+    100% { transform: scale(1); }
+  }
+
+  /* Text Glow Animation */
+  @keyframes glow {
+    from { text-shadow: 0 0 5px #f39c12, 0 0 10px #f39c12; }
+    to { text-shadow: 0 0 20px #e67e22, 0 0 30px #e67e22; }
+  }
+
+  /* Badge Shake Animation */
+  @keyframes shake {
+    0% { transform: rotate(-5deg); }
+    100% { transform: rotate(5deg); }
+  }
+</style>
+
+
+
+
+
+
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
-        function showFinal(amount, celebrate) {
-            const display = document.getElementById('amountDisplay');
-            const btn = document.getElementById('drawBtn');
-            const status = document.getElementById('statusMsg');
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(-45deg, #b8b4b493, #9c9b9bc7, #af9daabb, #645e72);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            padding: 50px 20px;
+        }
 
-            display.innerText = "$" + amount;
-            display.style.background = "linear-gradient(to bottom, #4ade80, #16a34a)";
-            display.style.webkitBackgroundClip = "text";
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 25px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* --- Updated Timer Area --- */
+        .eid-countdown-area {
+            margin: 15px 0;
+        }
+
+        .timer-label {
+            color: #e67e22;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        #countdown {
+            color: #fff;
+            font-size: 22px;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            background: rgba(0, 0, 0, 0.1);
+            padding: 5px 15px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .price-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .main-btn, .send-here-link {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 12px;
+            padding: 12px;
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .input-group input {
+            width: 100%; padding: 12px; border-radius: 12px; border: none; margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <h2 style="color: white; margin-bottom: 10px;">MILLIONAIRE JABER</h2>
+        
+        <div class="eid-countdown-area">
+            <span class="timer-label">Class fees</span>
             
-            btn.innerText = "Discount Locked: $" + amount;
-            btn.disabled = true;
-            status.innerHTML = `Your special price is <b>$${amount}</b>. Join now!`;
+        </div>
 
-            if (celebrate) {
-                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+       <div class="price-section" style="display: flex; align-items: center; gap: 10px; font-family: sans-serif;">
+    
+    <span style="color: #da0000; font-size: 28px; text-decoration: line-through; decoration-color: red; -webkit-text-decoration-color: red;">
+        $100
+    </span>
+
+    <span style="color: #616161; font-size: 15px; font-weight: bold;">
+        $49
+    </span>
+
+    <span style="background-color: #ff5252; color: white; padding: 2px 8px; border-radius: 4px; font-size: 14px; font-weight: bold;">
+        51% OFF
+    </span>
+    
+</div>
+
+        <p style="color: #eee; font-size: 11px; margin-bottom: 15px;">বিকাশ/নগদ: 01342037043 | বাইনান্স আইডি: 896991761 send and click send here option</p>
+
+        <a href="https://t.me/millionireclubowner" target="_blank" class="send-here-link">Send Here</a>
+
+        <div class="input-group">
+            <input type="password" id="accessCode" placeholder="Enter Secret Code">
+        </div>
+        <button class="main-btn" onclick="checkCode()">Verify & Enter</button>
+        <a href="video/lucky/lucky.html" class="main-btn">lucky draw</a>
+    </div>
+
+<script>
+    // ২১শে মার্চ ২০২৬ রাত ১২টার (00:00:00) জন্য টাইমার সেট করা হয়েছে
+    const targetDate = new Date("March 21, 2026 00:00:00").getTime();
+
+    const updateTimer = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        // দিন, ঘণ্টা, মিনিট এবং সেকেন্ড গণনা
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // ডিসপ্লে আপডেট
+        const display = document.getElementById("countdown");
+        if (display) {
+            display.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+        }
+
+        // সময় শেষ হয়ে গেলে
+        if (distance < 0) {
+            clearInterval(updateTimer);
+            if (display) {
+                display.innerHTML = "EID MUBARAK!";
             }
         }
-    </script>
+    }, 1000);
+
+    function checkCode() {
+        const code = document.getElementById('accessCode').value;
+        if (code === "target500") {
+            window.location.href = "Main Page/index.html";
+        } else {
+            alert("Wrong Code!");
+        }
+    }
+</script>
+   <div class="video-row">
+    <div class="video-container">
+        <p>Please watch the full video! ⏳🎥</p>
+        <iframe width="100%" height="270" src="https://www.youtube.com/embed/43OJJgnp0D8?si=CfAJ8Z2hABYxJWYC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 20px;"></iframe>
+    </div>
+
+    <div class="video-container">
+        <p>Keep trying for a better life. ✨</p>
+        <video controls playsinline autoplay muted loop>
+            <source src="video/lv_0_20260328134625.mp4" type="video/mp4">
+        </video>
+    </div>
+</div>
+
+    <div class="modules-section">
+        <div class="module-box">
+            <h3>Basic Module</h3>
+            <ul class="module-list">
+                <li>1. Candle Introduction <span class="class-count">1 Class</span></li>
+                <li>2. Market Introduction <span class="class-count">1 Class</span></li>
+                <li>3. S & R Level <span class="class-count">1 Class</span></li>
+                <li>4. Bull-Bear Confirmation <span class="class-count">1 Class</span></li>
+                <li>5. 2,3 Candle Psychology <span class="class-count">1 Class</span></li>
+                <li>6. Trapping <span class="class-count">1 Class</span></li>
+                <li>7. Momentum & B/S Confident <span class="class-count">1 Class</span></li>
+                <li>8. F & R Breakout <span class="class-count">1 Class</span></li>
+            </ul>
+        </div>
+
+        <div class="module-box">
+            <h3>Advance Module <span class="scroll-down">Scroll Down</span></h3>
+            <ul class="module-list">
+                <li>1. HH / HL / ChoCh / BoS <span class="class-count">1 Class</span></li>
+                <li>2. Supply-Demand Intro <span class="class-count">1 Class</span></li>
+                <li>3. Supply-Demand Zone <span class="class-count">1 Class</span></li>
+                <li>4. Fair Value Gap (FVG) <span class="class-count">1 Class</span></li>
+                <li>5. CCP <span class="class-count">1 Class</span></li>
+                <li>6. Quantity Filled (QFL) <span class="class-count">1 Class</span></li>
+                <li>7. Volume Analysis <span class="class-count">1 Class</span></li>
+                <li>8. What is Swap-Sweep <span class="class-count">1 Class</span></li>
+                <li>9. All Patterns <span class="class-count">1 Class</span></li>
+                <li>10. Bending <span class="class-count">1 Class</span></li>
+                <li>11. OB OS <span class="class-count">1 Class</span></li>
+               
+            </ul>
+        </div>
+
+        <div class="module-box">
+            <h3>Legend Module <span class="scroll-down">Scroll Down</span></h3>
+            <ul class="module-list">
+                <li>1. Parallel Trend CCPs-QFL <span class="class-count">1 Class</span></li>
+                <li>2. M & N QFL <span class="class-count">1 Class</span></li>
+                <li>3. Ellips Market <span class="class-count">1 Class</span></li>
+                <li>4. Rat Traps <span class="class-count">1 Class</span></li>
+                <li>5. Brain D-Think <span class="class-count">1 Class</span></li>
+                <li>6. Time Calculation <span class="class-count">1 Class</span></li>
+                <li>7. Range Calculation <span class="class-count">1 Class</span></li>
+                <li>8. Money Management <span class="class-count">1 Class</span></li>
+                <li>9. Risk Management <span class="class-count">1 Class</span></li>
+                <li>10. Secret 3 Class <span class="class-count">1 Class</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <img src="video/coy_muse-facebook-7442092_1280.png" alt="Contact Us" class="contact-us" onclick="window.open('https://www.facebook.com/junaid.al.jaber', '_blank')">
+
+    <style>
+        .contact-us {
+            
+            position: fixed;
+            right: 10px;
+            bottom: 40px;
+            margin-top: 30px;
+            width: 40px;
+            border-radius: 50%;
+            animation: glowPulse 2s infinite ease-in-out;
+        }
+        .wish-section {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: transparent; /* Apnar background-er shathe milbe */
+}
+
+.wish-content h2 {
+    font-size: 24px;
+    color: #b39999;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.wish-content p {
+    font-size: 18px;
+    color: #9e8484;
+    font-style: italic; /* Italic dile message-ti aro personal lage */
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.wish-divider {
+    height: 3px;
+    width: 50px;
+    background-color: #e9ebffb6; /* Apnar "Class Count" badge-er color-er shathe match kore */
+    margin: 20px auto 0;
+    border-radius: 2px;
+}
+.wish-divider- {
+    height: 3px;
+    width: 100%;
+    background-image: linear-gradient(124deg ,rgb(211, 195, 195),rgb(182, 164, 164),rgba(223, 223, 223, 0.685));
+    margin: 20px auto 0;
+    border-radius: 2px;
+}
+
+    </style>
+
+<script>
+    const loadingScreen = document.getElementById('loader-container') || document.getElementById('loading-screen');
+
+    function startLoading(url, isNewTab) {
+        if (!url) return;
+        if (loadingScreen) loadingScreen.style.display = 'flex';
+        
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        setTimeout(() => {
+            if (isNewTab && !isMobile) {
+                window.open(url, "_blank");
+                if (loadingScreen) loadingScreen.style.display = 'none'; 
+            } else {
+                window.location.href = url; // History maintain korbe
+            }
+        }, 1500); 
+    }
+
+    function checkCode() {
+        const codeInput = document.getElementById('accessCode').value;
+        const secretCode = "target500";
+
+        if (codeInput === secretCode) {
+            localStorage.setItem('mySecretCode', codeInput);
+            startLoading("Main Page/index.html", false); 
+        } else {
+            document.getElementById('error-msg').style.display = "block";
+            const loginCard = document.querySelector('.login-card');
+            loginCard.style.animation = "shake 0.5s ease-in-out";
+            setTimeout(() => { loginCard.style.animation = "float 4s ease-in-out infinite"; }, 500);
+        }
+    }
+
+    // Back button-e firle jeno loader stuck na hoye thake
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+            if (loadingScreen) loadingScreen.style.display = 'none';
+        }
+    });
+
+    function togglePassword() {
+        const input = document.getElementById('accessCode');
+        const icon = document.getElementById('eyeIcon');
+        input.type = (input.type === "password") ? "text" : "password";
+        if (icon) icon.innerText = (input.type === "password") ? "👁️" : "🔒";
+    }
+
+    window.onload = function() {
+        const savedCode = localStorage.getItem('mySecretCode');
+        if (savedCode) { document.getElementById('accessCode').value = savedCode; }
+    };
+</script>
 </body>
+<section class="wish-section">
+    <div class="wish-content">
+        <h2>Best Wishes for Your Success</h2>
+        <p>"I hope your trading journey is filled with growth and profitability. Stay patient, keep learning, and may you achieve your financial goals. My prayers and best wishes are always with you."</p>
+        <div class="wish-divider"></div>
+    </div>
+</section>
 </html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique Lucky Draw</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body {
+            background: radial-gradient(circle, #0f172a, #1e293b, #000);
+            height: 100vh; display: flex; justify-content: center; align-items: center;
+            color: white; overflow: hidden;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1); padding: 50px 30px;
+            border-radius: 30px; text-align: center; width: 90%; max-width: 400px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+        }
+        .display-amount {
+            font-size: 5.5rem; font-weight: 900; margin: 20px 0;
+            background: linear-gradient(to bottom, #ffffff, #38bdf8);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        button {
+            background: linear-gradient(45deg, #0ea5e9, #2563eb);
+            border: none; padding: 16px; border-radius: 15px;
+            color: white; font-size: 1.1rem; font-weight: 600;
+            cursor: pointer; width: 100%; transition: 0.3s;
+        }
+        button:disabled { background: #334155; cursor: not-allowed; opacity: 0.7; }
+        .footer-msg { margin-top: 25px; font-size: 0.85rem; color: #64748b; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2 style="font-weight: 300;">LUCKY DRAW</h2>
+        <div id="amountDisplay" class="display-amount">$??</div>
+        <button id="drawBtn" onclick="generateUniquePrice()">Draw My Luck</button>
+        <p id="statusMsg" class="footer-msg">Only one draw allowed per device</p>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const saved = localStorage.getItem('unique_class_price');
+            if (saved) { showFinal(saved, false); }
+        };
+
+        function generateUniquePrice() {
+            const btn = document.getElementById('drawBtn');
+            const display = document.getElementById('amountDisplay');
+            btn.disabled = true;
+
+            let counter = 0;
+            let interval = setInterval(() => {
+                // Animation: 0-31 random numbers
+                display.innerText = "$" + Math.floor(Math.random() * 32);
+                counter++;
+
+                if (counter > 50) {
+                    clearInterval(interval);
+                    
+                    // --- HIGHLY UNIQUE LOGIC ---
+                    // 1. Browser er cryptographically strong random number nibo
+                    const array = new Uint32Array(1);
+                    window.crypto.getRandomValues(array);
+                    const cryptoRandom = array[0] / (0xffffffff + 1);
+
+                    // 2. Click korar timing (milliseconds) nibo jate duita device same na hoy
+                    const ms = new Date().getMilliseconds();
+                    const mixedSeed = (cryptoRandom + (ms / 1000)) / 2;
+
+                    // 3. Result calculation (20 to 31)
+                    const finalPrice = Math.floor(mixedSeed * (31 - 20 + 1)) + 20;
+                    
+                    localStorage.setItem('unique_class_price', finalPrice);
+                    showFinal(finalPrice, true);
+                }
+            }, 50);
+        }
+
+        function showFinal(amount, celebrate) {
+            const display = document.getElementById('amountDisplay');
+            const btn = document.getElementById('drawBtn');
+            const status = document.getElementById('statusMsg');
+
+            display.innerText = "$" + amount;
+            display.style.background = "linear-gradient(to bottom, #4ade80, #16a34a)";
+            display.style.webkitBackgroundClip = "text";
+            
+            btn.innerText = "Discount Locked: $" + amount;
+            btn.disabled = true;
+            status.innerHTML = `Your special price is <b>$${amount}</b>. Join now!`;
+
+            if (celebrate) {
+                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+            }
+        }
+    </script>
+</body>
+</html>
